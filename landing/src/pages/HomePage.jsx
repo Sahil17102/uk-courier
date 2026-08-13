@@ -448,8 +448,11 @@ export default function UKCourierHome() {
               <img src="/assets/pax-intercity-truck-v2.jpg" alt="Domestic cargo truck on an Indian expressway" />
             </div>
             <div className="reference-tile reference-tile--core" aria-hidden="true">
-              <span>UKC</span>
-              <small>CONNECTED</small>
+              <div className="reference-core-mark">
+                <img src="/assets/uk-courier-icon.png" alt="" />
+              </div>
+              <span>UK Courier</span>
+              <small>Connected network</small>
             </div>
             <div className="reference-live-pill" aria-hidden="true">
               <span></span> Network active

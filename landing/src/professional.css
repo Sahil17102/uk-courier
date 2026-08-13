@@ -1875,18 +1875,59 @@ body {
 
 .reference-tile--core {
   z-index: 6;
-  top: 216px;
-  left: 336px;
-  display: grid;
-  width: 106px;
-  height: 106px;
-  place-content: center;
-  gap: 1px;
-  border-width: 8px;
-  border-radius: 29px;
-  background: linear-gradient(145deg, #163f39, #0b2723);
+  top: 205px;
+  left: 315px;
+  display: flex;
+  width: 156px;
+  height: 116px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 5px;
+  border-width: 7px;
+  border-radius: 30px;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0 1px, transparent 1px),
+    radial-gradient(circle at 20% 15%, rgba(255, 255, 255, 0.22), transparent 30%),
+    linear-gradient(145deg, #163f39, #0b2723);
+  background-size: 22px 22px, auto, auto;
   color: #fff;
   text-align: center;
+}
+
+.reference-tile--core::before,
+.reference-tile--core::after {
+  position: absolute;
+  inset: 50% auto auto 14px;
+  width: 30px;
+  height: 2px;
+  transform: translateY(-50%) rotate(-45deg);
+  border-radius: 99px;
+  background: rgba(255, 255, 255, 0.5);
+  content: "";
+}
+
+.reference-tile--core::after {
+  right: 14px;
+  left: auto;
+  background: rgba(213, 18, 36, 0.7);
+}
+
+.reference-core-mark {
+  display: grid;
+  width: 39px;
+  height: 39px;
+  place-items: center;
+  transform: rotate(-45deg);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.16);
+}
+
+.reference-core-mark img {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
 }
 
 .reference-tile--core span,
@@ -1896,17 +1937,21 @@ body {
 
 .reference-tile--core span {
   font-family: "Manrope", sans-serif;
-  font-size: 1rem;
+  font-size: 0.72rem;
   font-weight: 900;
-  letter-spacing: -0.04em;
+  letter-spacing: 0;
+  line-height: 1;
+  white-space: nowrap;
 }
 
 .reference-tile--core small {
-  margin-top: -4px;
+  margin-top: -1px;
   color: #83d4b6;
-  font-size: 0.35rem;
+  font-size: 0.37rem;
   font-weight: 800;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
 }
 
 .reference-live-pill {
