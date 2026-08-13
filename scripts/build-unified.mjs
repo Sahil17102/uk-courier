@@ -43,8 +43,11 @@ if (!skipInstall) {
 
 run(landingDir, ["run", "build"], {
   VITE_API_URL:
-    String(process.env.PAX_LANDING_API_URL || "").trim() ||
-    "https://pax-new.onrender.com",
+    String(
+      process.env.UK_COURIER_LANDING_API_URL ||
+        process.env.PAX_LANDING_API_URL ||
+        "",
+    ).trim() || "https://uk-courier-api.onrender.com",
   VITE_APP_MODE: "client",
   VITE_ENABLE_PREVIEW_MODE: "false",
 });

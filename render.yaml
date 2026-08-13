@@ -1,25 +1,25 @@
 services:
   - type: web
     runtime: static
-    name: pax-log
+    name: uk-courier
     buildCommand: npm run build
     staticPublishPath: ./combined-dist
     autoDeployTrigger: commit
     envVars:
       - key: VITE_CLIENT_APP_URL
-        value: https://pax-log.onrender.com/app
+        value: https://uk-courier.onrender.com/app
       - key: VITE_AUTH_APP_URL
-        value: https://pax-log.onrender.com/app/#/login
+        value: https://uk-courier.onrender.com/app/#/login
       - key: VITE_ADMIN_APP_URL
-        value: https://pax-log-admin.onrender.com
+        value: https://uk-courier-admin.onrender.com
       - key: VITE_ADMIN_AUTH_URL
-        value: https://pax-log-admin.onrender.com/#/auth/signin
+        value: https://uk-courier-admin.onrender.com/#/auth/signin
       - key: VITE_API_URL
-        value: https://pax-new.onrender.com/api
-      - key: PAX_LANDING_API_URL
-        value: https://pax-new.onrender.com
+        value: https://uk-courier-api.onrender.com/api
+      - key: UK_COURIER_LANDING_API_URL
+        value: https://uk-courier-api.onrender.com
       - key: VITE_APP_SOCKET_URL
-        value: https://pax-new.onrender.com
+        value: https://uk-courier-api.onrender.com
       - key: VITE_GOOGLE_OAUTH_CLIENT_ID
         sync: false
       - key: VITE_PUBLIC_GEOAPIFY_KEY
@@ -31,16 +31,16 @@ services:
 
   - type: web
     runtime: static
-    name: pax-log-admin
+    name: uk-courier-admin
     rootDir: admin-dashboard
     buildCommand: npm ci --legacy-peer-deps && npm run build
     staticPublishPath: ./dist
     autoDeployTrigger: commit
     envVars:
       - key: REACT_APP_API_BASE_URL
-        value: https://pax-new.onrender.com/api
+        value: https://uk-courier-api.onrender.com/api
       - key: REACT_APP_SOCKET_URL
-        value: https://pax-new.onrender.com
+        value: https://uk-courier-api.onrender.com
     routes:
       - type: rewrite
         source: /*
@@ -48,7 +48,7 @@ services:
 
   - type: web
     runtime: docker
-    name: pax-new
+    name: uk-courier-api
     plan: free
     dockerfilePath: ./Dockerfile
     healthCheckPath: /health
@@ -57,11 +57,11 @@ services:
       - key: NODE_ENV
         value: production
       - key: API_URL
-        value: https://pax-new.onrender.com
+        value: https://uk-courier-api.onrender.com
       - key: CORS_ALLOWED_ORIGINS
-        value: https://pax-log.onrender.com,https://pax-log-admin.onrender.com
+        value: https://uk-courier.onrender.com,https://uk-courier-admin.onrender.com
       - key: FRONTEND_URL
-        value: https://pax-log.onrender.com/app
+        value: https://uk-courier.onrender.com/app
       - key: AUTH_OTP_DELIVERY
         value: screen
       - key: AUTO_MIGRATE_ON_START
