@@ -92,7 +92,7 @@ export default function CalculatorSection({ estimate, shippingForm, onFieldChang
                     Estimated Cost
                   </Typography>
                   <Typography variant="h4" className="mt-4 text-3xl">
-                    {estimate.estimatedCost ? `Rs ${estimate.estimatedCost}` : "Rs --"}
+                    {estimate.estimatedCost ? `$${estimate.estimatedCost}` : "$ --"}
                   </Typography>
                 </MotionCard>
                 <MotionCard delay={0.08} className="rounded-[26px] border border-white/10 bg-white/8 p-5">
@@ -115,7 +115,7 @@ export default function CalculatorSection({ estimate, shippingForm, onFieldChang
 
               <div className="mt-8 rounded-[28px] border border-white/10 bg-white/8 p-5">
                 <Typography className="text-sm leading-8 text-white/72">
-                  Shipping rates depend on package weight, pickup pincode, delivery pincode, and
+                  Shipping rates depend on package weight, origin, destination, and
                   courier lane coverage. This estimate gives your team a fast pricing view before
                   the shipment moves to booking.
                 </Typography>

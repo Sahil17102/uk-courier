@@ -12,21 +12,21 @@ import {
 const partnerModes = [
   "Express and COD lanes",
   "Air priority routes",
-  "National surface coverage",
+  "International surface coverage",
   "Marketplace fulfillment",
   "Regional dispatch support",
-  "Fast metro delivery",
+  "Priority city delivery",
 ];
 
 const serviceMix = [
-  { label: "Metro lanes", width: "93%", value: "93%" },
+  { label: "Global lanes", width: "93%", value: "93%" },
   { label: "COD-ready routes", width: "88%", value: "88%" },
-  { label: "Same-day checks", width: "76%", value: "76%" },
+  { label: "Priority checks", width: "76%", value: "76%" },
 ];
 
 const networkStats = [
   { value: "6+", label: "Courier partners live" },
-  { value: "28k+", label: "Pincodes mapped" },
+  { value: "220+", label: "Countries served" },
   { value: "24/7", label: "Lane visibility" },
 ];
 

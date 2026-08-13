@@ -28,6 +28,8 @@ export function usePageInteractions(location, navigate) {
       listen(input, "input", sanitize);
     });
 
+    const validRouteCode = (value) => /^[A-Z0-9][A-Z0-9 -]{1,11}$/i.test(String(value || "").trim());
+
     document.querySelectorAll(".faq-item").forEach((item) => {
       const button = item.querySelector("button");
       listen(button, "click", () => {
@@ -47,9 +49,8 @@ export function usePageInteractions(location, navigate) {
       const pickup = document.querySelector("#home-pickup-pin")?.value.trim() || "";
       const delivery = document.querySelector("#home-delivery-pin")?.value.trim() || "";
       const error = document.querySelector("#home-rate-error");
-      const validPin = (value) => /^[1-9]\d{5}$/.test(value);
-      if (!validPin(pickup) || !validPin(delivery)) {
-        error.textContent = "Please enter two valid 6-digit Indian PIN codes.";
+      if (!validRouteCode(pickup) || !validRouteCode(delivery)) {
+        error.textContent = "Please enter valid origin and destination codes.";
         return;
       }
       error.textContent = "";
@@ -63,8 +64,8 @@ export function usePageInteractions(location, navigate) {
       const query = new URLSearchParams(location.search);
       const queryPickup = query.get("pickup") || "";
       const queryDelivery = query.get("delivery") || "";
-      if (/^[1-9]\d{5}$/.test(queryPickup)) pickupInput.value = queryPickup;
-      if (/^[1-9]\d{5}$/.test(queryDelivery)) deliveryInput.value = queryDelivery;
+      if (validRouteCode(queryPickup)) pickupInput.value = queryPickup.toUpperCase();
+      if (validRouteCode(queryDelivery)) deliveryInput.value = queryDelivery.toUpperCase();
 
       listen(rateForm, "submit", (event) => {
         event.preventDefault();
@@ -74,27 +75,27 @@ export function usePageInteractions(location, navigate) {
         const speed = document.querySelector("#speed").value;
         const rateError = document.querySelector("#rate-error");
         const rateResult = document.querySelector("#rate-result");
-        const validPin = (value) => /^[1-9]\d{5}$/.test(value);
-
         rateError.textContent = "";
         rateResult.classList.remove("is-visible");
-        if (!validPin(pickup) || !validPin(delivery)) {
-          rateError.textContent = "Please enter two valid 6-digit Indian PIN codes.";
+        if (!validRouteCode(pickup) || !validRouteCode(delivery)) {
+          rateError.textContent = "Please enter valid origin and destination codes.";
           return;
         }
 
-        const sameZone = pickup.slice(0, 2) === delivery.slice(0, 2);
-        const sameRegion = pickup[0] === delivery[0];
-        const routeBase = sameZone ? 74 : sameRegion ? 112 : 148;
-        const weightCharge = Math.ceil(weight * (sameZone ? 20 : 31));
+        const origin = pickup.toUpperCase();
+        const destination = delivery.toUpperCase();
+        const sameZone = origin.slice(0, 2) === destination.slice(0, 2);
+        const sameRegion = origin[0] === destination[0];
+        const routeBase = sameZone ? 18 : sameRegion ? 28 : 42;
+        const weightCharge = Math.ceil(weight * (sameZone ? 6 : 9));
         const estimate = Math.round((routeBase + weightCharge) * (speed === "express" ? 1.48 : 1));
-        const lower = Math.max(79, Math.round(estimate / 10) * 10);
-        const upper = Math.round((estimate * 1.28) / 10) * 10;
+        const lower = Math.max(12, Math.round(estimate));
+        const upper = Math.round(estimate * 1.28);
 
-        document.querySelector("#rate-value").textContent = `₹${lower}–₹${upper}`;
-        document.querySelector("#rate-route").textContent = `${pickup} → ${delivery} · ${weight} kg · ${speed === "express" ? "Express" : "Standard"}`;
-        const message = `Hello UK Courier,\nPlease confirm a rate for ${pickup} to ${delivery}, ${weight} kg, ${speed}. Website estimate: ₹${lower}–₹${upper}`;
-        document.querySelector("#rate-whatsapp").href = `https://wa.me/919494338206?text=${encodeURIComponent(message)}`;
+        document.querySelector("#rate-value").textContent = `$${lower}–$${upper}`;
+        document.querySelector("#rate-route").textContent = `${origin} → ${destination} · ${weight} kg · ${speed === "express" ? "Express" : "Standard"}`;
+        const message = `Hello UK Courier,\nPlease confirm an international rate for ${origin} to ${destination}, ${weight} kg, ${speed}. Website estimate: $${lower}–$${upper}`;
+        document.querySelector("#rate-whatsapp").href = `mailto:support@ukcourier.global?subject=International shipping rate&body=${encodeURIComponent(message)}`;
         rateResult.classList.add("is-visible");
       });
     }
@@ -179,7 +180,7 @@ export function usePageInteractions(location, navigate) {
       }
       error.textContent = "";
       const message = `Hello UK Courier,\nName: ${name}\nPhone: ${phone}\nShipment details: ${details}`;
-      window.open(`https://wa.me/919494338206?text=${encodeURIComponent(message)}`, "_blank", "noopener,noreferrer");
+      window.open(`mailto:support@ukcourier.global?subject=Shipment enquiry&body=${encodeURIComponent(message)}`, "_blank", "noopener,noreferrer");
     });
 
     return () => cleanups.forEach((cleanup) => cleanup());

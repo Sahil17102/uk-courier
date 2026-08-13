@@ -36,7 +36,7 @@ export const heroQuickTools = [
   },
   {
     icon: "pincode",
-    title: "Pincode Serviceability Check",
+    title: "Route Serviceability Check",
     description: "Validate a lane before the order moves into dispatch.",
     metric: "Instant check",
   },
@@ -50,43 +50,43 @@ export const heroHighlights = [
 
 export const courierPartners = [
   {
-    name: "Delhivery",
-    mark: "D",
+    name: "DHL Express",
+    mark: "DHL",
     brandColor: "#0f172a",
     markAccent: "#e21b2d",
     accent: "#FFE9ED",
   },
   {
-    name: "Blue Dart",
-    mark: "BD",
+    name: "FedEx",
+    mark: "FX",
     brandColor: "#1e6ab3",
     markAccent: "#f6c343",
     accent: "#FFF1D7",
   },
   {
-    name: "DTDC",
-    mark: "DT",
+    name: "UPS",
+    mark: "UPS",
     brandColor: "#1d7f4f",
     markAccent: "#f5c84c",
     accent: "#EAF1FF",
   },
   {
-    name: "Xpressbees",
-    mark: "XB",
+    name: "Aramex",
+    mark: "AX",
     brandColor: "#111827",
     markAccent: "#f59e0b",
     accent: "#FFF3E6",
   },
   {
-    name: "Ecom Express",
-    mark: "EX",
+    name: "DPD",
+    mark: "DPD",
     brandColor: "#ffffff",
     markAccent: "#ef4444",
     accent: "#ECFFF1",
   },
   {
-    name: "Shadowfax",
-    mark: "SF",
+    name: "Royal Mail",
+    mark: "RM",
     brandColor: "#07966f",
     markAccent: "#f7c948",
     accent: "#F0EDFF",
@@ -178,7 +178,7 @@ export const quickToolCards = [
     icon: "calculator",
     title: "Shipping Cost Calculator",
     description:
-      "Estimate rates using package weight, pickup pincode, and delivery pincode before you book.",
+      "Estimate rates using package weight, origin code, and destination code before you book.",
     stat: "Instant estimate",
   },
   {
@@ -190,7 +190,7 @@ export const quickToolCards = [
   },
   {
     icon: "pincode",
-    title: "Pincode Serviceability Check",
+    title: "Route Serviceability Check",
     description:
       "Check if a courier can service a route before committing a shipment to that delivery partner.",
     stat: "Lane coverage",
@@ -221,8 +221,8 @@ export const dashboardCapabilities = [
 
 export const shippingFields = [
   { key: "packageWeight", label: "Package Weight (kg)", placeholder: "0.5" },
-  { key: "pickupPincode", label: "Pickup Pincode", placeholder: "110001" },
-  { key: "deliveryPincode", label: "Delivery Pincode", placeholder: "400001" },
+  { key: "pickupPincode", label: "Origin Code", placeholder: "LON" },
+  { key: "deliveryPincode", label: "Destination Code", placeholder: "DXB" },
 ];
 
 export const calculatorHighlights = [
@@ -331,9 +331,9 @@ export const footerGroups = [
   {
     title: "Contact",
     links: [
-      { label: "support@expressmagic.in", href: "mailto:support@expressmagic.in" },
-      { label: "hello@expressmagic.in", href: "mailto:hello@expressmagic.in" },
-      { label: "+91 92175 53934", href: "tel:+919217553934" },
+      { label: "support@ukcourier.global", href: "mailto:support@ukcourier.global" },
+      { label: "hello@ukcourier.global", href: "mailto:hello@ukcourier.global" },
+      { label: "+44 20 7946 0958", href: "tel:+442079460958" },
       { label: "Mon-Sat, 9:00 AM to 7:00 PM", href: "#top" },
     ],
   },
@@ -341,9 +341,9 @@ export const footerGroups = [
 
 export const footerMeta = {
   address:
-    "A-1/4, Khodiyar Nagar Society near takshashila complex, Khodiyar Nagar road, Varachha, Surat - 395006",
+    "Global Operations Centre, London, United Kingdom",
   supportHours: "Mon-Sat, 9:00 AM to 7:00 PM",
-  contactNumber: "+91 92175 53934",
+  contactNumber: "+44 20 7946 0958",
 };
 
 export const mediaAssets = {

@@ -4,11 +4,11 @@ const services = [
   {
     tone: "card-coral",
     icon: "↗",
-    title: "City courier",
+    title: "International courier",
     image: "/assets/pax-local-vans-v2.jpg",
-    imageAlt: "UK Courier local delivery vans at a Hyderabad dispatch hub",
-    tag: "Hyderabad pickup",
-    description: "Documents and parcels across the city, coordinated through one local desk.",
+    imageAlt: "UK Courier delivery vans at a global dispatch hub",
+    tag: "Global pickup",
+    description: "Documents and parcels routed across regions through one connected operations desk.",
     link: "/contact",
     linkText: "Plan a pickup",
     visual: "photo",
@@ -24,7 +24,7 @@ const services = [
   },
   {
     tone: "card-green",
-    icon: "₹",
+    icon: "$",
     title: "Clear estimate",
     description: "Start with route, weight and speed before confirming the final service.",
     link: "/rate-calculator",
@@ -35,7 +35,7 @@ const services = [
     tone: "card-purple",
     icon: "+",
     title: "Business dispatch",
-    description: "Recurring pickup assistance for sellers, offices and growing teams.",
+    description: "Recurring pickup assistance for sellers, offices and teams shipping across borders.",
     link: "/contact",
     linkText: "Discuss your volume",
     visual: "dashboard",
@@ -43,7 +43,7 @@ const services = [
 ];
 
 const values = [
-  ["value-pink", "01", "person", "Talk to a person", "Call or email a Hyderabad-based contact when the shipment needs attention."],
+  ["value-pink", "01", "person", "Talk to a person", "Call or email a global shipping contact when the shipment needs attention."],
   ["value-blue", "02", "estimate", "Start with clarity", "See a useful indicative range before you confirm the final service."],
   ["value-mint", "03", "tracking", "Know the stage", "A simple tracking journey keeps each major handoff understandable."],
   ["value-orange", "04", "growth", "Scale the support", "Move from one parcel to recurring business dispatch assistance."],
@@ -101,11 +101,11 @@ const faqs = [
   ["How do I get a final shipping price?", "Use the indicative estimator, then share parcel dimensions and exact route with our team for confirmation."],
   ["Can UK Courier help with recurring business pickups?", "Yes. Share your usual shipment count, routes and pickup schedule so the team can suggest a workable dispatch flow."],
   ["What do I need for tracking?", "A UK Courier shipment reference. The website includes a demo flow; live status requires the operations data connection."],
-  ["Where is the UK Courier desk?", "House No. 3-6-105, Flat No. 105, Himayat Nagar, Hyderabad, Telangana 500029."],
+  ["Where is the UK Courier desk?", "UK Courier operates from a global support desk for international shipment planning and account help."],
 ];
 
 const ecosystemItems = [
-  ["SD", "Same-day"],
+  ["PR", "Priority"],
   ["EX", "Express parcel"],
   ["CC", "City cargo"],
   ["RF", "Road freight"],
@@ -118,7 +118,7 @@ const ecosystemItems = [
   ["D2C", "E-commerce"],
   ["DOC", "Documents"],
   ["BLK", "Bulk dispatch"],
-  ["DOM", "Domestic"],
+  ["GLB", "Global"],
   ["PKG", "Secure packing"],
   ["INS", "Shipment cover"],
   ["RTO", "Return to origin"],
@@ -129,11 +129,11 @@ const ecosystemItems = [
   ["HUB", "Hub movement"],
   ["PU", "Doorstep pickup"],
   ["FRG", "Fragile care"],
-  ["HYD", "Hyderabad"],
+  ["LHR", "London hub"],
   ["AIR", "Airport desk"],
   ["ECO", "Economy"],
   ["PRI", "Priority"],
-  ["INT", "Intercity"],
+  ["AIR", "Air lane"],
   ["SLA", "Timed delivery"],
 ];
 
@@ -191,14 +191,14 @@ function PlatformVisual({ type }) {
   if (type === "options") {
     return (
       <div className="platform-ui platform-options-ui" aria-hidden="true">
-        <div className="platform-window-head"><span>Delivery options</span><i>500029 → 400001</i></div>
+        <div className="platform-window-head"><span>Delivery options</span><i>LON → DXB</i></div>
         <div className="platform-option active"><span><b>Express</b><small>Priority movement</small></span><strong>1–2 days</strong></div>
         <div className="platform-option"><span><b>Standard</b><small>Balanced service</small></span><strong>3–5 days</strong></div>
         <div className="platform-option"><span><b>Economy</b><small>Budget first</small></span><strong>5–7 days</strong></div>
         <div className="platform-floating-card">
           <small>INDICATIVE RANGE</small>
-          <strong>₹180 – ₹230</strong>
-          <span>2 kg · Domestic</span>
+          <strong>$18 – $26</strong>
+          <span>2 kg · International</span>
         </div>
       </div>
     );
@@ -266,7 +266,7 @@ function PlatformVisual({ type }) {
           <i style={{ "--bar-height": `${height}%` }} key={`${height}-${index}`}></i>
         ))}
       </div>
-      <div className="insight-legend"><span><i></i>Parcel volume</span><b>Hyderabad dispatch view</b></div>
+      <div className="insight-legend"><span><i></i>Parcel volume</span><b>Global dispatch view</b></div>
     </div>
   );
 }
@@ -309,7 +309,7 @@ function ShippingEcosystemSection() {
         </h2>
         <p>
           From booking and doorstep pickup to hub movement, delivery and returns,
-          UK Courier keeps every important stage connected through one local logistics team.
+          UK Courier keeps every important stage connected through one global logistics team.
         </p>
         <a className="ecosystem-cta" href="/services">
           <span>Explore shipping services</span>
@@ -353,12 +353,12 @@ function ServiceVisual({ service }) {
   if (service.visual === "estimate") {
     return (
       <div className="solution-visual quote-visual">
-        <div className="route-chip"><span>500029</span><i>→</i><span>400001</span></div>
+        <div className="route-chip"><span>LON</span><i>→</i><span>DXB</span></div>
         <div className="quote-panel">
           <small>INDICATIVE RANGE</small>
-          <strong>₹180 – ₹230</strong>
+          <strong>$18 – $26</strong>
           <div><span>Standard</span><b>2 kg</b></div>
-          <div><span>Pickup</span><b>Himayat Nagar</b></div>
+          <div><span>Pickup</span><b>London hub</b></div>
           <button type="button">Review option</button>
         </div>
       </div>
@@ -411,14 +411,14 @@ export default function UKCourierHome() {
 
         <div className="shell reference-hero-grid">
           <div className="reference-hero-copy">
-            <p className="reference-kicker"><span>✦</span> Hyderabad courier network</p>
+            <p className="reference-kicker"><span>✦</span> International courier network</p>
             <h1>
               Smarter Deliveries.
-              <span>Built For India.</span>
+              <span>Built For Global Trade.</span>
             </h1>
             <p>
-              Same-day Hyderabad delivery, dependable intercity shipping and clear
-              tracking—coordinated through one responsive local team.
+              Cross-border courier, air cargo coordination and clear tracking
+              for businesses shipping across markets.
             </p>
             <div className="reference-actions">
               <a className="button reference-primary" href="/services">
@@ -430,22 +430,22 @@ export default function UKCourierHome() {
             </div>
             <div className="reference-proof">
               <span className="reference-proof-icon">✓</span>
-              <span><strong>Hyderabad based</strong><small>Local support, nationwide reach</small></span>
+              <span><strong>Global support</strong><small>International reach, responsive coordination</small></span>
             </div>
           </div>
 
-          <div className="reference-collage" aria-label="UK Courier domestic logistics network across local delivery, road transport, parcel sorting and warehousing">
+          <div className="reference-collage" aria-label="UK Courier international logistics network across air, road, parcel sorting and warehousing">
             <div className="reference-tile reference-tile--warehouse">
-              <img src="/assets/pax-domestic-sort-v2.jpg" alt="Automated parcel sorting at a domestic courier hub" />
+              <img src="/assets/pax-domestic-sort-v2.jpg" alt="Automated parcel sorting at an international courier hub" />
             </div>
             <div className="reference-tile reference-tile--air">
-              <img src="/assets/pax-local-vans-v2.jpg" alt="Local courier vans at a Hyderabad delivery hub" />
+              <img src="/assets/pax-local-vans-v2.jpg" alt="Courier vans at a global delivery hub" />
             </div>
             <div className="reference-tile reference-tile--courier">
               <img src="/assets/pax-smart-warehouse-v2.jpg" alt="People-free automated warehouse system" />
             </div>
             <div className="reference-tile reference-tile--delivery">
-              <img src="/assets/pax-intercity-truck-v2.jpg" alt="Domestic cargo truck on an Indian expressway" />
+              <img src="/assets/pax-intercity-truck-v2.jpg" alt="Cargo truck moving freight through an international route" />
             </div>
             <div className="reference-tile reference-tile--core" aria-hidden="true">
               <div className="reference-core-mark">
@@ -463,7 +463,7 @@ export default function UKCourierHome() {
         <div className="shell reference-feature-strip" aria-label="UK Courier logistics services">
           <a href="/services">
             <span className="reference-feature-icon">↗</span>
-            <span><strong>Same-day Delivery</strong><small>Fast pickups across Hyderabad</small></span>
+            <span><strong>Priority Delivery</strong><small>Faster movement on key global lanes</small></span>
             <i>›</i>
           </a>
           <a href="/services">
@@ -473,7 +473,7 @@ export default function UKCourierHome() {
           </a>
           <a href="/services">
             <span className="reference-feature-icon">✓</span>
-            <span><strong>Intercity Shipping</strong><small>Reliable movement across India</small></span>
+            <span><strong>International Shipping</strong><small>Reliable movement across borders</small></span>
             <i>›</i>
           </a>
           <a href="/track">
@@ -487,7 +487,7 @@ export default function UKCourierHome() {
       <section className="section solutions-section">
         <div className="wide-shell">
           <div className="big-heading centre reveal">
-            <p className="eyebrow">One logistics desk. Four ways to move.</p>
+            <p className="eyebrow">One global logistics desk. Four ways to move.</p>
             <h2>Choose what your shipment needs.</h2>
             <p>Fast when it is urgent. Practical when budget matters. Flexible when your business grows.</p>
           </div>
@@ -511,13 +511,13 @@ export default function UKCourierHome() {
           <div className="band-copy reveal">
             <p className="eyebrow light">Quick estimate</p>
             <h2>Price the route before you book.</h2>
-            <p>Enter two PIN codes and a few parcel details. Get an indicative range in under a minute.</p>
+            <p>Enter origin and destination route codes with parcel details. Get an indicative range in under a minute.</p>
           </div>
           <form className="quick-rate-card reveal" id="home-rate-form" noValidate>
             <div className="quick-rate-row">
-              <label>Pickup PIN<input id="home-pickup-pin" inputMode="numeric" maxLength="6" placeholder="500029" /></label>
+              <label>Origin code<input id="home-pickup-pin" inputMode="text" maxLength="12" placeholder="LON" /></label>
               <span>→</span>
-              <label>Delivery PIN<input id="home-delivery-pin" inputMode="numeric" maxLength="6" placeholder="400001" /></label>
+              <label>Destination code<input id="home-delivery-pin" inputMode="text" maxLength="12" placeholder="DXB" /></label>
             </div>
             <div className="quick-rate-footer">
               <p><small>Need full details?</small><strong>Use our estimate calculator</strong></p>
@@ -564,7 +564,7 @@ export default function UKCourierHome() {
             <img src="/assets/pax-smart-warehouse-v2.jpg" alt="Automated parcel handling inside a smart warehouse" />
             <div className="photo-overlay"></div>
             <div className="ops-metrics">
-              <div><small>01</small><strong>One local desk</strong><span>Direct support</span></div>
+              <div><small>01</small><strong>One global desk</strong><span>Direct support</span></div>
               <div><small>02</small><strong>Four movement types</strong><span>Matched to the job</span></div>
               <div><small>03</small><strong>Clear handoffs</strong><span>Useful updates</span></div>
             </div>
@@ -574,7 +574,7 @@ export default function UKCourierHome() {
 
       <section className="delivery-platform-section">
         <div className="shell platform-intro reveal">
-          <p className="eyebrow">UK Courier delivery coordination</p>
+          <p className="eyebrow">UK Courier global delivery coordination</p>
           <h2>One connected workflow for every parcel decision.</h2>
           <p>
             Bring estimates, pickup planning, movement updates, returns and shipment insight
@@ -585,9 +585,9 @@ export default function UKCourierHome() {
 
         <div className="platform-audience">
           <div className="shell">
-            <p>Designed for the teams that keep Hyderabad moving</p>
+            <p>Designed for teams shipping across markets</p>
             <div className="platform-audience-list" aria-label="Teams served by UK Courier">
-              {["Local sellers", "E-commerce teams", "Retail stores", "Growing offices", "D2C businesses", "Marketplace dispatch"].map((item, index) => (
+              {["Global sellers", "E-commerce teams", "Retail brands", "Growing offices", "D2C businesses", "Marketplace dispatch"].map((item, index) => (
                 <span key={item}><i>{String(index + 1).padStart(2, "0")}</i>{item}</span>
               ))}
             </div>
@@ -656,7 +656,7 @@ export default function UKCourierHome() {
             <p className="eyebrow">Common questions</p>
             <h2>A few things worth knowing.</h2>
             <p>Need something more specific? Call the team directly.</p>
-            <a className="text-link" href="tel:+919494338206">+91 94943 38206</a>
+            <a className="text-link" href="tel:+442079460958">+44 20 7946 0958</a>
           </div>
           <div className="faq-list">
             {faqs.map(([question, answer]) => (

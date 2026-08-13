@@ -3,23 +3,23 @@ function toPositiveNumber(value) {
   return Number.isFinite(number) && number > 0 ? number : 0;
 }
 
-export function isValidPincode(value) {
-  return /^\d{6}$/.test(String(value).trim());
+export function isValidRouteCode(value) {
+  return /^[A-Z0-9][A-Z0-9 -]{1,11}$/i.test(String(value).trim());
 }
 
-function resolveZone(pickupPincode, deliveryPincode) {
-  const pickup = String(pickupPincode);
-  const delivery = String(deliveryPincode);
+function resolveZone(originCode, destinationCode) {
+  const pickup = String(originCode);
+  const delivery = String(destinationCode);
 
   if (pickup.slice(0, 3) === delivery.slice(0, 3)) {
-    return { label: "Local", surcharge: 18, eta: "1-2 days" };
+    return { label: "Regional", surcharge: 18, eta: "1-2 days" };
   }
 
   if (pickup.slice(0, 1) === delivery.slice(0, 1)) {
-    return { label: "Regional", surcharge: 34, eta: "2-4 days" };
+    return { label: "Continental", surcharge: 34, eta: "2-4 days" };
   }
 
-  return { label: "National", surcharge: 56, eta: "4-6 days" };
+  return { label: "International", surcharge: 56, eta: "4-6 days" };
 }
 
 export function calculateBillableWeight({ packageWeight, weightInGrams, length, width, height, divisor = 5000 }) {
@@ -48,6 +48,8 @@ export function calculateShippingEstimate({
   height,
   pickupPincode,
   deliveryPincode,
+  originCode = pickupPincode,
+  destinationCode = deliveryPincode,
   paymentType = "Prepaid",
   shipmentValue,
 }) {
@@ -59,7 +61,7 @@ export function calculateShippingEstimate({
     height,
   });
 
-  if (chargeableWeightKg <= 0 || !isValidPincode(pickupPincode) || !isValidPincode(deliveryPincode)) {
+  if (chargeableWeightKg <= 0 || !isValidRouteCode(originCode) || !isValidRouteCode(destinationCode)) {
     return {
       estimatedCost: 0,
       zoneLabel: "--",
@@ -70,7 +72,7 @@ export function calculateShippingEstimate({
     };
   }
 
-  const zone = resolveZone(pickupPincode, deliveryPincode);
+  const zone = resolveZone(originCode, destinationCode);
   const baseCharge = 42;
   const weightCharge = chargeableWeightKg <= 0.5 ? 0 : Math.ceil((chargeableWeightKg - 0.5) / 0.5) * 12;
   const codSurcharge = paymentType === "COD" ? Math.max(18, toPositiveNumber(shipmentValue) * 0.015) : 0;

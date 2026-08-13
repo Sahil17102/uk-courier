@@ -83,13 +83,13 @@ export default function TrackPage() {
           <div>
             <p className="eyebrow light">Need shipment help?</p>
             <h2>Keep the reference ready when you contact the team.</h2>
-            <p>Share the UK Courier reference, sender or receiver phone number, and the latest visible status so the local desk can understand the shipment quickly.</p>
+            <p>Share the UK Courier reference, sender or receiver phone number, and the latest visible status so the global desk can understand the shipment quickly.</p>
           </div>
           <div className="tracking-help-card">
             <span>01 <strong>Shipment reference</strong></span>
             <span>02 <strong>Contact phone number</strong></span>
             <span>03 <strong>Latest visible update</strong></span>
-            <a className="button button-white" href="tel:+919494338206">Call +91 94943 38206</a>
+            <a className="button button-white" href="tel:+442079460958">Call +44 20 7946 0958</a>
           </div>
         </div>
       </section>

@@ -4,7 +4,7 @@ export const metadata = {
 };
 
 const rateFactors = [
-  ["01", "Route", "Pickup and delivery PIN codes help identify the shipment lane and approximate distance."],
+  ["01", "Route", "Origin and destination codes help identify the shipment lane and approximate distance."],
   ["02", "Chargeable weight", "The greater of actual and volumetric weight may be used for the final shipping calculation."],
   ["03", "Service speed", "Express movement usually costs more than a standard service on the same route."],
 ];
@@ -32,14 +32,14 @@ export default function EstimatePage() {
                 <b>INDICATIVE</b>
               </div>
               <div className="rate-route-preview">
-                <div><small>PICKUP PIN</small><strong>500029</strong><span>Hyderabad</span></div>
+                <div><small>ORIGIN</small><strong>LON</strong><span>London</span></div>
                 <i>→</i>
-                <div><small>DELIVERY PIN</small><strong>400001</strong><span>Mumbai</span></div>
+                <div><small>DESTINATION</small><strong>DXB</strong><span>Dubai</span></div>
               </div>
               <div className="rate-preview-meta">
                 <span>2 kg parcel</span>
                 <span>Standard service</span>
-                <span>Domestic</span>
+                <span>International</span>
               </div>
               <div className="rate-cost-breakdown">
                 <span><small>Route &amp; handling</small><b>Included</b></span>
@@ -47,7 +47,7 @@ export default function EstimatePage() {
               </div>
               <div className="rate-preview-total">
                 <small>INDICATIVE SHIPPING RANGE</small>
-                <strong>₹210–₹270</strong>
+                <strong>$24–$32</strong>
               </div>
               <p className="rate-preview-note">Final price depends on serviceability, dimensions and shipment contents.</p>
             </div>
@@ -62,8 +62,8 @@ export default function EstimatePage() {
             <h2>Build your estimate.</h2>
             <p className="tool-form-intro">Start with the basic shipment details. You can confirm dimensions and exact serviceability with the team later.</p>
             <div className="field-row">
-              <label>Pickup PIN code<input id="pickup-pin" inputMode="numeric" maxLength="6" placeholder="500029" required /></label>
-              <label>Delivery PIN code<input id="delivery-pin" inputMode="numeric" maxLength="6" placeholder="400001" required /></label>
+              <label>Origin code<input id="pickup-pin" inputMode="text" maxLength="12" placeholder="LON" required /></label>
+              <label>Destination code<input id="delivery-pin" inputMode="text" maxLength="12" placeholder="DXB" required /></label>
             </div>
             <div className="field-row">
               <label>Approx. weight<select id="weight" defaultValue="0.5"><option value="0.5">Up to 0.5 kg</option><option value="1">Up to 1 kg</option><option value="2">Up to 2 kg</option><option value="5">Up to 5 kg</option><option value="10">Up to 10 kg</option></select></label>
@@ -72,21 +72,21 @@ export default function EstimatePage() {
             <p className="form-error" id="rate-error" role="alert"></p>
             <button className="button button-dark full-button" type="submit">Calculate indicative range <span>→</span></button>
             <div className="rate-result" id="rate-result" aria-live="polite">
-              <div><small>Indicative shipment range</small><strong id="rate-value">₹—</strong><span id="rate-route"></span></div>
+              <div><small>Indicative shipment range</small><strong id="rate-value">$—</strong><span id="rate-route"></span></div>
               <a id="rate-whatsapp" href="#" target="_blank" rel="noreferrer">Confirm with the team →</a>
             </div>
           </form>
           <aside className="form-aside tool-aside estimate-aside">
-            <span className="aside-number">₹</span>
+            <span className="aside-number">$</span>
             <p className="mini-label">Before you confirm</p>
             <h2>This is an estimate, not a final quote.</h2>
             <p>Final pricing can vary based on dimensions, exact serviceability, shipment contents and pickup requirements.</p>
             <div className="tool-aside-list">
               <span>Measure the packed parcel</span>
-              <span>Share accurate PIN codes</span>
+              <span>Share accurate origin and destination details</span>
               <span>Mention fragile or special contents</span>
             </div>
-            <a className="text-link" href="tel:+919494338206">Call +91 94943 38206</a>
+            <a className="text-link" href="tel:+442079460958">Call +44 20 7946 0958</a>
           </aside>
         </div>
       </section>

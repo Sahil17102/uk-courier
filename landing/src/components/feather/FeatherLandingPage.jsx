@@ -191,7 +191,7 @@ const featureShowcaseItems = [
     number: "02",
     description: "Compare and ship through trusted courier partners without switching between separate portals.",
     bullets: [
-      "Connect Delhivery, Blue Dart, DTDC, XpressBees and more",
+      "Connect DHL, FedEx, UPS, Aramex and more",
       "Compare serviceability, speed, and rates before dispatch",
       "Assign carriers by lane, weight, COD, and delivery priority",
       "Scale carrier coverage as your order volume grows",
@@ -534,7 +534,7 @@ const faqItems = [
   {
     question: "Which couriers are integrated with UK Courier?",
     answer:
-      "UK Courier supports leading courier partners including Delhivery, Blue Dart, DTDC, XpressBees, Ecom Express, Shadowfax, and other trusted networks for domestic and international delivery.",
+      "UK Courier supports trusted regional and international delivery networks for parcels, documents, air cargo, and cross-border movement.",
   },
   {
     question: "How does the pricing work?",
@@ -566,13 +566,13 @@ const faqItems = [
 const valueCards = [
   {
     title: "Multi-Channel Integration",
-    description: "Connect Shopify, WooCommerce, Amazon, Flipkart and more so every selling channel lives in one place.",
+    description: "Connect Shopify, WooCommerce, Amazon, eBay and more so every selling channel lives in one place.",
     icon: "globe",
     shell: "bg-[linear-gradient(135deg,rgba(217,230,247,0.5),rgba(255,255,255,0.95))]",
   },
   {
     title: "27+ Courier Partners",
-    description: "Work with Blue Dart, Delhivery, XpressBees, FedEx and more from one shipping workspace.",
+    description: "Work with DHL, FedEx, UPS, Aramex and more from one shipping workspace.",
     icon: "truck",
     shell: "bg-[linear-gradient(135deg,rgba(253,231,234,0.42),rgba(255,255,255,0.95))]",
   },
@@ -668,25 +668,25 @@ const rateCards = [
 
 const rateRows = [
   {
-    courier: "Delhivery",
+    courier: "DHL Express",
     lane: "Surface",
-    price: "Rs 64",
+    price: "$18",
     eta: "2-4 days",
     fit: "Best value",
     width: "w-[88%]",
   },
   {
-    courier: "Blue Dart",
+    courier: "FedEx",
     lane: "Air",
-    price: "Rs 112",
+    price: "$31",
     eta: "1-2 days",
     fit: "Fastest",
     width: "w-[74%]",
   },
   {
-    courier: "XpressBees",
+    courier: "UPS",
     lane: "Standard",
-    price: "Rs 72",
+    price: "$22",
     eta: "3-5 days",
     fit: "COD ready",
     width: "w-[81%]",
@@ -780,9 +780,9 @@ const operationsModes = [
       ["Avg. decision", "0.8 sec"],
     ],
     rows: [
-      ["EM-28491", "Surat to Mumbai", "Delhivery Air", "Ready"],
-      ["EM-28490", "Delhi to Jaipur", "XpressBees", "Ready"],
-      ["EM-28489", "Pune to Bengaluru", "Blue Dart", "Review"],
+      ["UKC-28491", "London to Dubai", "Express Air", "Ready"],
+      ["UKC-28490", "Paris to Berlin", "Priority Road", "Ready"],
+      ["UKC-28489", "New York to Toronto", "Global Air", "Review"],
     ],
     decision: ["Delivery promise", "Tomorrow by 9 PM"],
     signal: "92% lane reliability",
@@ -801,9 +801,9 @@ const operationsModes = [
       ["Scan coverage", "98.6%"],
     ],
     rows: [
-      ["EM-28476", "Mumbai hub", "Out for delivery", "Live"],
-      ["EM-28462", "Jaipur gateway", "Linehaul received", "Live"],
-      ["EM-28431", "Bengaluru hub", "Scan delayed", "Review"],
+      ["UKC-28476", "London hub", "Out for delivery", "Live"],
+      ["UKC-28462", "Dubai gateway", "Linehaul received", "Live"],
+      ["UKC-28431", "Toronto hub", "Scan delayed", "Review"],
     ],
     decision: ["Next milestone", "Delivery attempt"],
     signal: "Updated 38 seconds ago",
@@ -923,8 +923,8 @@ function HeroCommandDashboard() {
       <div className="px-4 py-5 sm:px-6 sm:py-6">
         <div className="flex items-start justify-between gap-4">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-white/42">AWB 7842 0913 6741</p>
-            <h2 className="mt-2 text-base font-semibold sm:text-lg">Surat to Bengaluru</h2>
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-white/42">AWB UKC 0913 6741</p>
+            <h2 className="mt-2 text-base font-semibold sm:text-lg">London to Dubai</h2>
           </div>
           <span className="shrink-0 rounded-lg bg-[#ED1C24] px-3 py-2 text-[0.68rem] font-semibold text-white">Out for delivery</span>
         </div>
@@ -951,9 +951,9 @@ function HeroCommandDashboard() {
 
         <div className="mt-6 hidden border-t border-white/10 pt-5 sm:block">
           {[
-            ["EM-28476", "Mumbai Hub", "Moving", "2 min ago"],
-            ["EM-28462", "Jaipur Gateway", "Sorted", "8 min ago"],
-            ["EM-28431", "Bengaluru Hub", "Review", "12 min ago"],
+            ["UKC-28476", "London Hub", "Moving", "2 min ago"],
+            ["UKC-28462", "Dubai Gateway", "Sorted", "8 min ago"],
+            ["UKC-28431", "Toronto Hub", "Review", "12 min ago"],
           ].map((row, index) => (
             <div
               key={row[0]}
@@ -1228,7 +1228,7 @@ function PlatformsSection() {
                 </svg>
                 <div className="absolute bottom-8 right-7 rounded-lg bg-white px-5 py-4 shadow-[0_18px_40px_rgba(15,23,42,0.12)]">
                   <p className="text-xs font-extrabold text-[#061A33]">Out for delivery</p>
-                  <p className="mt-1 text-xs font-medium text-[#64748B]">Mumbai, MH</p>
+                  <p className="mt-1 text-xs font-medium text-[#64748B]">Dubai, UAE</p>
                 </div>
                 <span className="absolute right-24 top-11 grid h-14 w-14 place-items-center rounded-lg bg-[#2563EB] text-white shadow-[0_16px_34px_rgba(37,99,235,0.24)]">
                   <Icon name="truck" className="h-8 w-8" />
@@ -1288,9 +1288,9 @@ function ShippingToolsSection() {
                       </div>
                       <div className="grid gap-1">
                         {[
-                          ["Express Air", "1-2 days", "Rs 184"],
-                          ["Surface Pro", "3-4 days", "Rs 126"],
-                          ["Economy", "5-6 days", "Rs 98"],
+                          ["Express Air", "1-2 days", "$42"],
+                          ["Surface Pro", "3-4 days", "$31"],
+                          ["Economy", "5-6 days", "$24"],
                         ].map((rate, rateIndex) => (
                           <div
                             key={rate[0]}
@@ -2511,7 +2511,7 @@ function CommercePanel() {
         <div className="rounded-xl border border-[#e7f0f2] bg-[#F5F8FC] p-5">
           <p className="text-xs font-semibold uppercase tracking-[0.22em] text-slate-400">Store connections</p>
           <div className="mt-4 grid gap-3">
-            {["Shopify", "WooCommerce", "Amazon", "Flipkart"].map((label, index) => (
+            {["Shopify", "WooCommerce", "Amazon", "eBay"].map((label, index) => (
               <MotionDiv
                 key={label}
                 initial={{ opacity: 0, x: -14 }}

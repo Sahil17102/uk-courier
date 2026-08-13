@@ -5,12 +5,11 @@ import Icon from "./Icons";
 import { Field, Reveal } from "./primitives";
 import { trackingStatuses } from "./siteData";
 import { API_BASE_URL, CLIENT_RATE_CALCULATOR_URL } from "../../utils/appLinks";
-import { calculateShippingEstimate, isValidPincode } from "../../utils/shippingCalculator";
+import { calculateShippingEstimate, isValidRouteCode } from "../../utils/shippingCalculator";
 
 const MotionArticle = motion.article;
 const MotionForm = motion.form;
 const COURIER_CART_API = API_BASE_URL;
-const PINCODE_API = "https://api.postalpincode.in/pincode";
 const paymentTypes = ["Prepaid", "COD"];
 const rateBucketKeys = ["rates", "localRates", "regionalRates", "metroRates", "nationalRates", "zonalRates"];
 const VOLUMETRIC_STORAGE_KEY = "feather-volumetric-calculator";
@@ -50,7 +49,7 @@ function getCourierRateDetails(courier) {
 }
 
 function formatCurrency(amount) {
-  return amount != null ? `Rs ${amount.toFixed(2)}` : "-";
+  return amount != null ? `$${amount.toFixed(2)}` : "-";
 }
 
 function formatChargeableWeight(weight) {
@@ -254,8 +253,8 @@ export function RateCalculatorCard({
         length: form.length,
         width: form.width,
         height: form.height,
-        pickupPincode: form.pickupPincode,
-        deliveryPincode: form.deliveryPincode,
+        originCode: form.pickupPincode,
+        destinationCode: form.deliveryPincode,
         paymentType: form.paymentType,
         shipmentValue: form.shipmentValue,
       }),
@@ -272,12 +271,12 @@ export function RateCalculatorCard({
   );
 
   const validationError = useMemo(() => {
-    if (!isValidPincode(form.pickupPincode)) {
-      return "Enter a valid 6-digit pickup pincode.";
+    if (!isValidRouteCode(form.pickupPincode)) {
+      return "Enter a valid origin code.";
     }
 
-    if (!isValidPincode(form.deliveryPincode)) {
-      return "Enter a valid 6-digit delivery pincode.";
+    if (!isValidRouteCode(form.deliveryPincode)) {
+      return "Enter a valid destination code.";
     }
 
     if (estimate.chargeableWeightKg <= 0) {
@@ -300,7 +299,9 @@ export function RateCalculatorCard({
   const handleChange = (event) => {
     const { name, value } = event.target;
     const nextValue =
-      name === "pickupPincode" || name === "deliveryPincode" ? value.replace(/\D/g, "").slice(0, 6) : value;
+      name === "pickupPincode" || name === "deliveryPincode"
+        ? value.replace(/[^a-z0-9 -]/gi, "").toUpperCase().slice(0, 12)
+        : value;
 
     setForm((current) => ({
       ...current,
@@ -321,86 +322,18 @@ export function RateCalculatorCard({
     setShowEstimate(false);
   };
 
-  const lookupPincode = async (pincode) => {
-    if (!pincode || pincode.length !== 6) {
-      return { city: "", state: "", message: "", tone: "muted" };
-    }
-
-    try {
-      const response = await fetch(`${PINCODE_API}/${pincode}`);
-      const data = await response.json();
-      const postOffice = data?.[0]?.PostOffice?.[0];
-
-      if (data?.[0]?.Status === "Success" && postOffice) {
-        return {
-          city: postOffice.District || "",
-          state: postOffice.State || "",
-          message: "",
-          tone: "muted",
-        };
-      }
-
-      return { city: "", state: "", message: "Pincode details not found.", tone: "error" };
-    } catch {
-      return {
-        city: "",
-        state: "",
-        message: "City/state lookup is unavailable right now.",
-        tone: "muted",
-      };
-    }
-  };
-
   useEffect(() => {
-    if (form.pickupPincode.length !== 6) {
-      setPincodeMeta((current) => ({
-        ...current,
-        pickup: { city: "", state: "", loading: false, message: "", tone: "muted" },
-      }));
-      return undefined;
-    }
-
-    let ignore = false;
     setPincodeMeta((current) => ({
       ...current,
-      pickup: { ...current.pickup, loading: true, message: "", tone: "muted" },
+      pickup: { city: "", state: "", loading: false, message: "", tone: "muted" },
     }));
-
-    lookupPincode(form.pickupPincode).then((result) => {
-      if (!ignore) {
-        setPincodeMeta((current) => ({ ...current, pickup: { ...result, loading: false } }));
-      }
-    });
-
-    return () => {
-      ignore = true;
-    };
   }, [form.pickupPincode]);
 
   useEffect(() => {
-    if (form.deliveryPincode.length !== 6) {
-      setPincodeMeta((current) => ({
-        ...current,
-        delivery: { city: "", state: "", loading: false, message: "", tone: "muted" },
-      }));
-      return undefined;
-    }
-
-    let ignore = false;
     setPincodeMeta((current) => ({
       ...current,
-      delivery: { ...current.delivery, loading: true, message: "", tone: "muted" },
+      delivery: { city: "", state: "", loading: false, message: "", tone: "muted" },
     }));
-
-    lookupPincode(form.deliveryPincode).then((result) => {
-      if (!ignore) {
-        setPincodeMeta((current) => ({ ...current, delivery: { ...result, loading: false } }));
-      }
-    });
-
-    return () => {
-      ignore = true;
-    };
   }, [form.deliveryPincode]);
 
   const handleCalculate = async () => {
@@ -530,21 +463,21 @@ export function RateCalculatorCard({
       <div className="mt-6 grid gap-4 md:grid-cols-2">
         <div>
           <Field
-            label="Pick-up Area Pincode"
+            label="Origin Code"
             name="pickupPincode"
             value={form.pickupPincode}
             onChange={handleChange}
-            placeholder="Enter pickup pincode"
+            placeholder="Enter origin code"
           />
           {renderPincodeMeta(pincodeMeta.pickup)}
         </div>
         <div>
           <Field
-            label="Delivery Area Pincode"
+            label="Destination Code"
             name="deliveryPincode"
             value={form.deliveryPincode}
             onChange={handleChange}
-            placeholder="Enter delivery pincode"
+            placeholder="Enter destination code"
           />
           {renderPincodeMeta(pincodeMeta.delivery)}
         </div>
@@ -567,7 +500,7 @@ export function RateCalculatorCard({
           value={form.shipmentValue}
           onChange={handleChange}
           placeholder="Enter shipment value"
-          postfix="Rs"
+          postfix="$"
         />
         <label className="grid gap-2 text-sm font-medium text-slate-700">
           <span>Payment Type</span>

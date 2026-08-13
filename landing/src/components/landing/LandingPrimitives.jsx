@@ -1,8 +1,8 @@
 import { domAnimation, LazyMotion, m } from "framer-motion";
 import AccessTimeRoundedIcon from "@mui/icons-material/AccessTimeRounded";
+import AttachMoneyRoundedIcon from "@mui/icons-material/AttachMoneyRounded";
 import AutoAwesomeRoundedIcon from "@mui/icons-material/AutoAwesomeRounded";
 import CompareArrowsRoundedIcon from "@mui/icons-material/CompareArrowsRounded";
-import CurrencyRupeeRoundedIcon from "@mui/icons-material/CurrencyRupeeRounded";
 import DashboardRoundedIcon from "@mui/icons-material/DashboardRounded";
 import HubRoundedIcon from "@mui/icons-material/HubRounded";
 import InsightsRoundedIcon from "@mui/icons-material/InsightsRounded";
@@ -56,25 +56,25 @@ export const fadeUp = {
 };
 
 const toolIconMap = {
-  calculator: CurrencyRupeeRoundedIcon,
+  calculator: AttachMoneyRoundedIcon,
   comparison: CompareArrowsRoundedIcon,
   pincode: PlaceRoundedIcon,
 };
 
 const cardVisualMap = {
   "Too Many Courier Platforms": [DashboardRoundedIcon, HubRoundedIcon],
-  "Unclear Shipping Costs": [CurrencyRupeeRoundedIcon, CompareArrowsRoundedIcon],
+  "Unclear Shipping Costs": [AttachMoneyRoundedIcon, CompareArrowsRoundedIcon],
   "Limited Visibility on Deliveries": [LocalShippingRoundedIcon, RouteRoundedIcon],
   "No Data for Better Decisions": [InsightsRoundedIcon, TimelineRoundedIcon],
-  "Courier Rate Comparison": [CompareArrowsRoundedIcon, CurrencyRupeeRoundedIcon],
+  "Courier Rate Comparison": [CompareArrowsRoundedIcon, AttachMoneyRoundedIcon],
   "Automated Shipping Labels": [ReceiptLongRoundedIcon, Inventory2RoundedIcon],
   "Real-Time Shipment Tracking": [RouteRoundedIcon, AccessTimeRoundedIcon],
   "Smart Courier Selection": [AutoAwesomeRoundedIcon, VerifiedRoundedIcon],
   "Bulk Order Processing": [Inventory2RoundedIcon, DashboardRoundedIcon],
-  "COD Management": [CurrencyRupeeRoundedIcon, AccessTimeRoundedIcon],
+  "COD Management": [AttachMoneyRoundedIcon, AccessTimeRoundedIcon],
   "Shipment Overview": [Inventory2RoundedIcon, LocalShippingRoundedIcon],
   "Courier Performance Analytics": [InsightsRoundedIcon, TimelineRoundedIcon],
-  "Cost Tracking": [CurrencyRupeeRoundedIcon, AccessTimeRoundedIcon],
+  "Cost Tracking": [AttachMoneyRoundedIcon, AccessTimeRoundedIcon],
   "Delivery Insights": [RouteRoundedIcon, InsightsRoundedIcon],
   "Add Your Orders": [Inventory2RoundedIcon, DashboardRoundedIcon],
   "Compare Courier Options": [CompareArrowsRoundedIcon, HubRoundedIcon],

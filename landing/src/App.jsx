@@ -64,7 +64,7 @@ function Header({ pathname }) {
     <header className={`site-header${isHome ? " site-header--home" : ""}`}>
       <div className="header-utility">
         <div className="shell header-utility-inner">
-          <span><i></i> Hyderabad-based courier and logistics support</span>
+          <span><i></i> International courier and global shipping support</span>
           <nav aria-label="Utility navigation">
             {utilityNavItems.map(([path, label]) => (
               <AppLink key={path} to={path}>{label}</AppLink>
@@ -96,9 +96,9 @@ function Header({ pathname }) {
             Get a Quote <span aria-hidden="true">↗</span>
           </AppLink>
         ) : (
-          <a className="nav-phone" href="tel:+919494338206">
+          <a className="nav-phone" href="tel:+442079460958">
             <small>Talk to our team</small>
-            <strong>+91 94943 38206</strong>
+            <strong>+44 20 7946 0958</strong>
           </a>
         )}
         <button
@@ -116,7 +116,7 @@ function Header({ pathname }) {
           <AppLink key={path} to={path}>{label}</AppLink>
         ))}
         <a href={CLIENT_AUTH_URL}>Sign In</a>
-        <a className="button button-dark" href="tel:+919494338206">Call logistics desk</a>
+        <a className="button button-dark" href="tel:+442079460958">Call logistics desk</a>
       </nav>
     </header>
   );
@@ -130,21 +130,21 @@ function Footer() {
           <AppLink className="brand footer-brand" to="/">
             <span className="brand-logo"><img src="/assets/uk-courier-logo.png" alt="UK Courier — Global Shipping Solutions" /></span>
           </AppLink>
-          <p>Clear, practical shipping support from Hyderabad.</p>
+          <p>Clear, practical international shipping support.</p>
         </div>
         <div className="footer-nav">
           {footerItems.map(([path, label]) => <AppLink key={path} to={path}>{label}</AppLink>)}
         </div>
         <address className="footer-contact">
-          <a href="tel:+919494338206">+91 94943 38206</a>
-          <a href="mailto:Saipratham650@gmail.com">Saipratham650@gmail.com</a>
-          <span>House No. 3-6-105, Flat No. 105</span>
-          <span>Himayat Nagar, Hyderabad, Telangana 500029, India</span>
+          <a href="tel:+442079460958">+44 20 7946 0958</a>
+          <a href="mailto:support@ukcourier.global">support@ukcourier.global</a>
+          <span>Global Operations Centre</span>
+          <span>London, United Kingdom</span>
         </address>
       </div>
       <div className="shell footer-bottom">
         <span>© {new Date().getFullYear()} UK Courier</span>
-        <span>Hyderabad · Telangana · India</span>
+        <span>London · Global Shipping · Worldwide</span>
       </div>
     </footer>
   );

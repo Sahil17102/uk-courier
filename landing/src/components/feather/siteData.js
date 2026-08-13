@@ -9,11 +9,11 @@ export const companyProfile = {
   tagline: "Smart shipping for smarter sellers",
   shortPitch:
     "A brighter UK Courier shipping experience designed to unify store operations, courier decisions, tracking visibility, and delivery performance.",
-  mobile: "9217553934",
-  phone: "92175 53934",
-  email: "support@expressmagic.in",
+  mobile: "442079460958",
+  phone: "+44 20 7946 0958",
+  email: "support@ukcourier.global",
   address:
-    "A-1/4, Khodiyar Nagar Society near takshashila complex, Khodiyar Nagar road, Varachha, Surat - 395006",
+    "Global Operations Centre, London, United Kingdom",
 };
 
 export const trackingStatuses = [

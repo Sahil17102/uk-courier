@@ -9,7 +9,7 @@ export const navigation = [
 
 export const heroStats = [
   { value: "1", label: "unified shipping console" },
-  { value: "PAN India", label: "serviceability support" },
+  { value: "Global", label: "serviceability support" },
   { value: "24/7", label: "shipment visibility" },
 ];
 
@@ -98,8 +98,8 @@ export const featureGrid = [
     icon: "lock",
   },
   {
-    title: "PAN India Coverage",
-    description: "Support wider serviceability with courier partners that help you ship across India.",
+    title: "Global Coverage",
+    description: "Support wider serviceability with courier partners that help you ship across markets.",
     icon: "globe",
   },
   {
@@ -169,7 +169,7 @@ export const faqs = [
   {
     question: "Do you provide coverage outside major cities?",
     answer:
-      "The solution is positioned around PAN India coverage support, helping businesses serve wider pin-code networks through courier partners.",
+      "The solution is positioned around global coverage support, helping businesses serve wider route networks through courier partners.",
   },
   {
     question: "Can this setup grow into a larger multi-page website later?",
