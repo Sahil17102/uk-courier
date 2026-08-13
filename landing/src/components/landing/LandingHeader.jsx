@@ -22,8 +22,8 @@ export default function LandingHeader({
             <a href="#top" className="flex min-w-0 items-center gap-3">
               <Box
                 component="img"
-                src="/assets/pax-logo.png"
-                alt="Pax Logistics"
+                src="/assets/uk-courier-logo.png"
+                alt="UK Courier"
                 sx={{ width: { xs: 142, sm: 172 }, height: "auto", flexShrink: 0 }}
               />
               <div className="hidden min-w-0 sm:block">
@@ -32,7 +32,7 @@ export default function LandingHeader({
                   className="brand-heading text-lg"
                   sx={{ fontFamily: '"Poppins", sans-serif' }}
                 >
-                  Pax Logistics
+                  UK Courier
                 </Typography>
                 <Typography className="text-sm" sx={{ color: "#6d6157" }}>
                   One landing front door. Three clean product paths.

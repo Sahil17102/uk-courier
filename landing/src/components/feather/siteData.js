@@ -5,10 +5,10 @@ export const siteNavigation = [
 ];
 
 export const companyProfile = {
-  name: "Pax Logistics",
+  name: "UK Courier",
   tagline: "Smart shipping for smarter sellers",
   shortPitch:
-    "A brighter Pax Logistics shipping experience designed to unify store operations, courier decisions, tracking visibility, and delivery performance.",
+    "A brighter UK Courier shipping experience designed to unify store operations, courier decisions, tracking visibility, and delivery performance.",
   mobile: "9217553934",
   phone: "92175 53934",
   email: "support@expressmagic.in",

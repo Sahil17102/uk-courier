@@ -1,6 +1,6 @@
 export const metadata = {
-  title: "Track a Shipment — Pax Logistics",
-  description: "Track a Pax Logistics shipment reference.",
+  title: "Track a Shipment — UK Courier",
+  description: "Track a UK Courier shipment reference.",
 };
 
 const trackingStages = [
@@ -18,17 +18,17 @@ export default function TrackPage() {
           <div className="tool-hero-copy">
             <p className="eyebrow">Track shipment</p>
             <h1>One number. A clearer journey.</h1>
-            <p>Enter your Pax reference to view the latest shipment stage and understand the next handoff.</p>
+            <p>Enter your UK Courier reference to view the latest shipment stage and understand the next handoff.</p>
             <form className="tracking-form tool-tracking-form" id="tracking-form" noValidate>
               <label className="sr-only" htmlFor="tracking-id">Tracking reference</label>
-              <input id="tracking-id" placeholder="Enter Pax shipment reference" autoComplete="off" />
+              <input id="tracking-id" placeholder="Enter UK Courier shipment reference" autoComplete="off" />
               <button className="button button-dark" type="submit">Track now</button>
             </form>
             <p className="form-error track-error" id="tracking-error" role="alert"></p>
           </div>
           <div className="tool-hero-visual track-hero-visual" aria-hidden="true">
             <div className="track-hero-card">
-              <div><small>PAX / LIVE JOURNEY</small><b>In transit</b></div>
+              <div><small>UK COURIER / LIVE JOURNEY</small><b>In transit</b></div>
               <span>LIVE STATUS</span>
               <strong>Moving to delivery hub</strong>
               <div className="track-hero-route"><i className="done">✓</i><span></span><i className="done">✓</i><span></span><i className="active"></i><span></span><i></i></div>
@@ -54,7 +54,7 @@ export default function TrackPage() {
             <li className="active"><i></i><div><strong>In transit</strong><small>Moving through network</small></div></li>
             <li><i></i><div><strong>Delivered</strong><small>Final delivery</small></div></li>
           </ol>
-          <p className="panel-note" id="tracking-note">Shipment details are loaded from the Pax API.</p>
+          <p className="panel-note" id="tracking-note">Shipment details are loaded from the UK Courier API.</p>
         </div>
       </section>
 
@@ -83,7 +83,7 @@ export default function TrackPage() {
           <div>
             <p className="eyebrow light">Need shipment help?</p>
             <h2>Keep the reference ready when you contact the team.</h2>
-            <p>Share the Pax reference, sender or receiver phone number, and the latest visible status so the local desk can understand the shipment quickly.</p>
+            <p>Share the UK Courier reference, sender or receiver phone number, and the latest visible status so the local desk can understand the shipment quickly.</p>
           </div>
           <div className="tracking-help-card">
             <span>01 <strong>Shipment reference</strong></span>

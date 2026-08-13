@@ -59,7 +59,7 @@ const shippingTools = [
     action: "Track a shipment",
     icon: "mapPin",
     image: trackingDashboardImage,
-    imageAlt: "Pax Logistics live shipment tracking dashboard",
+    imageAlt: "UK Courier live shipment tracking dashboard",
   },
   {
     label: "02 / MEASURE",
@@ -69,7 +69,7 @@ const shippingTools = [
     action: "Calculate weight",
     icon: "calculator",
     image: volumetricCalculatorImage,
-    imageAlt: "Pax Logistics volumetric weight calculator",
+    imageAlt: "UK Courier volumetric weight calculator",
   },
   {
     label: "03 / COMPARE",
@@ -417,7 +417,7 @@ const testimonialSlides = [
   [
     {
       quote:
-        "Pax Logistics has completely transformed our shipping operations. One integration, multiple carriers, and real-time tracking - everything just works.",
+        "UK Courier has completely transformed our shipping operations. One integration, multiple carriers, and real-time tracking - everything just works.",
       name: "James Carter",
       role: "Operations Manager, TrendyMart",
       brand: "TrendyMart",
@@ -434,7 +434,7 @@ const testimonialSlides = [
       avatar: "https://i.pravatar.cc/96?img=47",
     },
     {
-      quote: "From API integration to everyday shipments, Pax Logistics makes global shipping simple and scalable. Highly recommended!",
+      quote: "From API integration to everyday shipments, UK Courier makes global shipping simple and scalable. Highly recommended!",
       name: "Michael Brown",
       role: "Co-founder, GearUp",
       brand: "GearUp",
@@ -454,7 +454,7 @@ const testimonialSlides = [
     },
     {
       quote:
-        "Pax Logistics helped us bring order volume, carrier performance, and cost visibility into one place. The workflow feels built for scaling brands.",
+        "UK Courier helped us bring order volume, carrier performance, and cost visibility into one place. The workflow feels built for scaling brands.",
       name: "Ravi Kapoor",
       role: "Founder, QuickCart",
       brand: "QuickCart",
@@ -474,7 +474,7 @@ const testimonialSlides = [
   [
     {
       quote:
-        "We needed a shipping platform that could grow with us. Pax Logistics gave us carrier access, tracking visibility, and a reliable operating rhythm.",
+        "We needed a shipping platform that could grow with us. UK Courier gave us carrier access, tracking visibility, and a reliable operating rhythm.",
       name: "Daniel Evans",
       role: "COO, CraftLane",
       brand: "CraftLane",
@@ -492,7 +492,7 @@ const testimonialSlides = [
     },
     {
       quote:
-        "Pax Logistics makes shipping decisions clearer. The analytics helped us understand which lanes, couriers, and service levels work best.",
+        "UK Courier makes shipping decisions clearer. The analytics helped us understand which lanes, couriers, and service levels work best.",
       name: "Omar Khan",
       role: "Growth Manager, ModeHaus",
       brand: "ModeHaus",
@@ -527,14 +527,14 @@ const testimonialStats = [
 
 const faqItems = [
   {
-    question: "What is Pax Logistics?",
+    question: "What is UK Courier?",
     answer:
-      "Pax Logistics is an all-in-one shipping platform that connects you with multiple courier partners through a single integration. It helps businesses simplify shipping, save time and money, and deliver a better customer experience.",
+      "UK Courier is an all-in-one shipping platform that connects you with multiple courier partners through a single integration. It helps businesses simplify shipping, save time and money, and deliver a better customer experience.",
   },
   {
-    question: "Which couriers are integrated with Pax Logistics?",
+    question: "Which couriers are integrated with UK Courier?",
     answer:
-      "Pax Logistics supports leading courier partners including Delhivery, Blue Dart, DTDC, XpressBees, Ecom Express, Shadowfax, and other trusted networks for domestic and international delivery.",
+      "UK Courier supports leading courier partners including Delhivery, Blue Dart, DTDC, XpressBees, Ecom Express, Shadowfax, and other trusted networks for domestic and international delivery.",
   },
   {
     question: "How does the pricing work?",
@@ -547,14 +547,14 @@ const faqItems = [
       "Plans can be tailored based on shipment volume and integration needs. The goal is to keep onboarding simple, transparent, and aligned with how your business ships.",
   },
   {
-    question: "How secure is my data with Pax Logistics?",
+    question: "How secure is my data with UK Courier?",
     answer:
-      "Pax Logistics is built with secure access patterns and operational safeguards so shipment, customer, and business data remain protected across the workflow.",
+      "UK Courier is built with secure access patterns and operational safeguards so shipment, customer, and business data remain protected across the workflow.",
   },
   {
-    question: "Can I integrate Pax Logistics with my existing platform?",
+    question: "Can I integrate UK Courier with my existing platform?",
     answer:
-      "Yes. Pax Logistics can connect with ecommerce stores, marketplaces, internal tools, and custom systems using API-ready shipping workflows.",
+      "Yes. UK Courier can connect with ecommerce stores, marketplaces, internal tools, and custom systems using API-ready shipping workflows.",
   },
   {
     question: "What kind of support do you provide?",
@@ -1345,7 +1345,7 @@ function OperationsDeckSection() {
           <div className="grid gap-8 lg:grid-cols-[0.46fr_0.54fr] lg:items-end">
             <Reveal>
               <div>
-                <p className="text-sm font-extrabold uppercase tracking-[0.12em] text-[#FF5A61]">Inside Pax Logistics</p>
+                <p className="text-sm font-extrabold uppercase tracking-[0.12em] text-[#FF5A61]">Inside UK Courier</p>
                 <h2 className="mt-4 max-w-[42rem] font-display text-[2.15rem] font-extrabold leading-[1.12] text-white sm:text-[3rem]">
                   One operating deck for every shipping decision.
                 </h2>
@@ -1400,7 +1400,7 @@ function OperationsDeckSection() {
               >
                 <div className="flex min-w-0 items-center justify-between gap-3 border-b border-[#D9E3EF] bg-white px-4 py-3 sm:px-5">
                   <div className="flex min-w-0 items-center gap-3">
-                    <img src="/assets/pax-logo.png" alt="Pax Logistics" className="h-9 w-auto shrink-0 object-contain" />
+                    <img src="/assets/uk-courier-logo.png" alt="UK Courier" className="h-9 w-auto shrink-0 object-contain" />
                     <span className="hidden h-5 w-px bg-[#D9E3EF] sm:block" />
                     <p className="truncate text-xs font-extrabold uppercase tracking-[0.1em] text-[#526277] sm:block">Operations control</p>
                   </div>
@@ -1531,7 +1531,7 @@ function OperationsDeckSection() {
 function FeatherMark({ compact = false }) {
   return (
     <img
-      src="/assets/pax-logo.png"
+      src="/assets/uk-courier-logo.png"
       alt=""
       className={`${
         compact ? "h-16" : "h-[5.6rem]"
@@ -1559,14 +1559,14 @@ function WhyChooseSection() {
         <div className="grid gap-10 lg:grid-cols-[0.34fr_0.66fr] lg:items-start">
           <Reveal>
             <div className="max-w-[28rem]">
-              <p className="text-sm font-extrabold uppercase tracking-[0.12em] text-[#ED1C24]">Why Choose Pax Logistics?</p>
+              <p className="text-sm font-extrabold uppercase tracking-[0.12em] text-[#ED1C24]">Why Choose UK Courier?</p>
               <h2 className="mt-4 font-display text-[1.72rem] font-extrabold leading-[1.24] text-[#061A33] sm:text-[2.15rem] lg:text-[2.1rem]">
                 Everything You Need,
                 <br />
                 In One Powerful Platform
               </h2>
               <p className="mt-5 text-base leading-[1.62] text-[#183153] sm:text-[1rem]">
-                Pax Logistics simplifies shipping so you can focus on growing your business. One integration. Endless possibilities.
+                UK Courier simplifies shipping so you can focus on growing your business. One integration. Endless possibilities.
               </p>
               <ActionAnchor
                 href={AUTH_APP_URL}
@@ -2041,7 +2041,7 @@ function TestimonialsSection() {
               <span className="text-[#062A5B]">Worldwide.</span>
             </h2>
             <p className="mx-auto mt-5 max-w-xl text-sm font-medium leading-[1.75] text-[#183153] sm:text-base">
-              See how businesses of all sizes are simplifying shipping, saving time, and growing with Pax Logistics.
+              See how businesses of all sizes are simplifying shipping, saving time, and growing with UK Courier.
             </p>
           </div>
         </Reveal>
@@ -2319,7 +2319,7 @@ function FaqSection() {
                 <span className="text-[#062A5B]">Questions.</span>
               </h2>
               <p className="mt-5 max-w-[25rem] text-sm font-medium leading-[1.75] text-[#183153] sm:text-base">
-                Everything you need to know about Pax Logistics and how it can simplify your shipping operations.
+                Everything you need to know about UK Courier and how it can simplify your shipping operations.
               </p>
 
               <FaqRouteMap />
@@ -2833,7 +2833,7 @@ function ShippingStackSection() {
             <AlignedSectionHeading
               eyebrow="Complete Landing Flow"
               title="Give sellers a clear path from first order to repeatable delivery control."
-              description="The landing page now frames Pax Logistics as a practical operating layer: connect channels, choose couriers with confidence, automate updates, and recover delivery exceptions from one workspace."
+              description="The landing page now frames UK Courier as a practical operating layer: connect channels, choose couriers with confidence, automate updates, and recover delivery exceptions from one workspace."
             />
 
             <div className="mt-8 grid gap-4 sm:grid-cols-2">
@@ -2948,7 +2948,7 @@ function LaunchSupportSection() {
             <AlignedSectionHeading
               eyebrow="Launch With Confidence"
               title="A shipping platform is only useful when your team can run it daily."
-              description="Pax Logistics pairs clean software with practical setup support, so teams can move from fragmented courier workflows into a reliable operating rhythm."
+              description="UK Courier pairs clean software with practical setup support, so teams can move from fragmented courier workflows into a reliable operating rhythm."
             />
             <div className="mt-8 grid gap-4">
               {supportCards.map((card, index) => (

@@ -21,7 +21,7 @@ export default function WeightCalculatorPage() {
           </div>
           <div className="tool-hero-visual weight-hero-visual" aria-hidden="true">
             <div className="parcel-cube">
-              <span className="cube-top"></span><span className="cube-side"></span><strong>PAX</strong>
+              <span className="cube-top"></span><span className="cube-side"></span><strong>UKC</strong>
               <i className="measure-length">40 cm</i><i className="measure-width">30 cm</i><i className="measure-height">25 cm</i>
             </div>
             <div className="weight-hero-result"><small>VOLUMETRIC</small><strong>6.00 kg</strong><span>40 × 30 × 25 ÷ 5000</span></div>

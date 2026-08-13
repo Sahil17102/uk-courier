@@ -1,6 +1,6 @@
 export const metadata = {
-  title: "Rate Calculator — Pax Logistics",
-  description: "Calculate an indicative Pax Logistics shipping rate.",
+  title: "Rate Calculator — UK Courier",
+  description: "Calculate an indicative UK Courier shipping rate.",
 };
 
 const rateFactors = [

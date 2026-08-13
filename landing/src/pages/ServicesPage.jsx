@@ -6,8 +6,8 @@ const serviceRows = [
 ];
 
 export const metadata = {
-  title: "Services — Pax Logistics",
-  description: "Courier, domestic shipping, business dispatch and freight support from Pax Logistics.",
+  title: "Services — UK Courier",
+  description: "Courier, domestic shipping, business dispatch and freight support from UK Courier.",
 };
 
 export default function ServicesPage() {
@@ -51,7 +51,7 @@ export default function ServicesPage() {
       <section className="section soft-section">
         <div className="shell compact-cta reveal">
           <div><p className="eyebrow">Not sure what fits?</p><h2>Tell us what you need to move.</h2></div>
-          <a className="button button-dark" href="/contact">Contact Pax <span>→</span></a>
+          <a className="button button-dark" href="/contact">Contact UK Courier <span>→</span></a>
         </div>
       </section>
     </main>

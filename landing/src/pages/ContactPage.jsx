@@ -1,6 +1,6 @@
 export const metadata = {
-  title: "Contact — Pax Logistics",
-  description: "Contact Pax Logistics in Himayat Nagar, Hyderabad.",
+  title: "Contact — UK Courier",
+  description: "Contact UK Courier in Himayat Nagar, Hyderabad.",
 };
 
 export default function ContactPage() {

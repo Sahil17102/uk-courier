@@ -6,7 +6,7 @@ const services = [
     icon: "↗",
     title: "City courier",
     image: "/assets/pax-local-vans-v2.jpg",
-    imageAlt: "Pax local delivery vans at a Hyderabad dispatch hub",
+    imageAlt: "UK Courier local delivery vans at a Hyderabad dispatch hub",
     tag: "Hyderabad pickup",
     description: "Documents and parcels across the city, coordinated through one local desk.",
     link: "/contact",
@@ -99,9 +99,9 @@ const platformCapabilities = [
 
 const faqs = [
   ["How do I get a final shipping price?", "Use the indicative estimator, then share parcel dimensions and exact route with our team for confirmation."],
-  ["Can Pax help with recurring business pickups?", "Yes. Share your usual shipment count, routes and pickup schedule so the team can suggest a workable dispatch flow."],
-  ["What do I need for tracking?", "A Pax shipment reference. The website includes a demo flow; live status requires the operations data connection."],
-  ["Where is the Pax Logistics desk?", "House No. 3-6-105, Flat No. 105, Himayat Nagar, Hyderabad, Telangana 500029."],
+  ["Can UK Courier help with recurring business pickups?", "Yes. Share your usual shipment count, routes and pickup schedule so the team can suggest a workable dispatch flow."],
+  ["What do I need for tracking?", "A UK Courier shipment reference. The website includes a demo flow; live status requires the operations data connection."],
+  ["Where is the UK Courier desk?", "House No. 3-6-105, Flat No. 105, Himayat Nagar, Hyderabad, Telangana 500029."],
 ];
 
 const ecosystemItems = [
@@ -214,9 +214,9 @@ function PlatformVisual({ type }) {
           <div><small>DELIVERED</small><strong>26</strong></div>
         </div>
         <div className="dispatch-table">
-          <div><span>PAX-260731</span><b>Express</b><i>Ready</i></div>
-          <div><span>PAX-260728</span><b>Standard</b><i>Moving</i></div>
-          <div><span>PAX-260724</span><b>Business</b><i>Collected</i></div>
+          <div><span>UKC-260731</span><b>Express</b><i>Ready</i></div>
+          <div><span>UKC-260728</span><b>Standard</b><i>Moving</i></div>
+          <div><span>UKC-260724</span><b>Business</b><i>Collected</i></div>
         </div>
         <div className="dispatch-rule">✓ Route and weight checked</div>
       </div>
@@ -226,8 +226,8 @@ function PlatformVisual({ type }) {
   if (type === "tracking") {
     return (
       <div className="platform-ui platform-tracking-ui" aria-hidden="true">
-        <div className="platform-window-head"><span>PAX / TRACK</span><i>Live</i></div>
-        <small>SHIPMENT PAX-260729</small>
+        <div className="platform-window-head"><span>UK COURIER / TRACK</span><i>Live</i></div>
+        <small>SHIPMENT UKC-260729</small>
         <h4>Moving to destination hub</h4>
         <div className="platform-track-line">
           <i className="done">✓</i><span></span><i className="done">✓</i><span></span><i className="active"></i><span></span><i></i>
@@ -241,7 +241,7 @@ function PlatformVisual({ type }) {
   if (type === "returns") {
     return (
       <div className="platform-ui platform-returns-ui" aria-hidden="true">
-        <div className="platform-window-head"><span>Return request</span><i>PAX-260712</i></div>
+        <div className="platform-window-head"><span>Return request</span><i>UKC-260712</i></div>
         <div className="return-product"><span>PX</span><div><small>PARCEL</small><strong>Business shipment</strong></div><b>2.4 kg</b></div>
         <div className="return-reasons">
           <span className="active">Address update</span><span>Sender recall</span><span>Other reason</span>
@@ -309,7 +309,7 @@ function ShippingEcosystemSection() {
         </h2>
         <p>
           From booking and doorstep pickup to hub movement, delivery and returns,
-          Pax keeps every important stage connected through one local logistics team.
+          UK Courier keeps every important stage connected through one local logistics team.
         </p>
         <a className="ecosystem-cta" href="/services">
           <span>Explore shipping services</span>
@@ -334,10 +334,10 @@ function ServiceVisual({ service }) {
     return (
       <div className="solution-visual mockup-visual">
         <div className="phone-mockup">
-          <div className="phone-top"><i></i><span>PAX SHIPMENT</span><b>•••</b></div>
+          <div className="phone-top"><i></i><span>UK COURIER SHIPMENT</span><b>•••</b></div>
           <div className="phone-body">
             <span className="tiny-label">REFERENCE</span>
-            <strong>PAX-260729</strong>
+            <strong>UKC-260729</strong>
             <div className="phone-progress">
               <i className="done"></i><span></span><i className="done"></i><span></span><i className="active"></i><span></span><i></i>
             </div>
@@ -378,7 +378,7 @@ function ServiceVisual({ service }) {
   );
 }
 
-export default function PaxLogisticsHome() {
+export default function UKCourierHome() {
   return (
     <main id="main">
       <section className="reference-hero">
@@ -434,7 +434,7 @@ export default function PaxLogisticsHome() {
             </div>
           </div>
 
-          <div className="reference-collage" aria-label="Pax domestic logistics network across local delivery, road transport, parcel sorting and warehousing">
+          <div className="reference-collage" aria-label="UK Courier domestic logistics network across local delivery, road transport, parcel sorting and warehousing">
             <div className="reference-tile reference-tile--warehouse">
               <img src="/assets/pax-domestic-sort-v2.jpg" alt="Automated parcel sorting at a domestic courier hub" />
             </div>
@@ -448,7 +448,7 @@ export default function PaxLogisticsHome() {
               <img src="/assets/pax-intercity-truck-v2.jpg" alt="Domestic cargo truck on an Indian expressway" />
             </div>
             <div className="reference-tile reference-tile--core" aria-hidden="true">
-              <span>PAX</span>
+              <span>UKC</span>
               <small>CONNECTED</small>
             </div>
             <div className="reference-live-pill" aria-hidden="true">
@@ -457,7 +457,7 @@ export default function PaxLogisticsHome() {
           </div>
         </div>
 
-        <div className="shell reference-feature-strip" aria-label="Pax logistics services">
+        <div className="shell reference-feature-strip" aria-label="UK Courier logistics services">
           <a href="/services">
             <span className="reference-feature-icon">↗</span>
             <span><strong>Same-day Delivery</strong><small>Fast pickups across Hyderabad</small></span>
@@ -571,7 +571,7 @@ export default function PaxLogisticsHome() {
 
       <section className="delivery-platform-section">
         <div className="shell platform-intro reveal">
-          <p className="eyebrow">Pax delivery coordination</p>
+          <p className="eyebrow">UK Courier delivery coordination</p>
           <h2>One connected workflow for every parcel decision.</h2>
           <p>
             Bring estimates, pickup planning, movement updates, returns and shipment insight
@@ -583,7 +583,7 @@ export default function PaxLogisticsHome() {
         <div className="platform-audience">
           <div className="shell">
             <p>Designed for the teams that keep Hyderabad moving</p>
-            <div className="platform-audience-list" aria-label="Teams served by Pax Logistics">
+            <div className="platform-audience-list" aria-label="Teams served by UK Courier">
               {["Local sellers", "E-commerce teams", "Retail stores", "Growing offices", "D2C businesses", "Marketplace dispatch"].map((item, index) => (
                 <span key={item}><i>{String(index + 1).padStart(2, "0")}</i>{item}</span>
               ))}
@@ -626,7 +626,7 @@ export default function PaxLogisticsHome() {
       <section className="section value-section">
         <div className="shell value-grid">
           <div className="value-heading reveal">
-            <p className="eyebrow">Why Pax</p>
+            <p className="eyebrow">Why UK Courier</p>
             <h2>Logistics without the runaround.</h2>
             <p>Useful choices, direct contact and no unnecessary complexity.</p>
           </div>

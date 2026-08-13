@@ -74,8 +74,8 @@ function Header({ pathname }) {
         </div>
       </div>
       <div className="shell nav">
-        <AppLink className="brand" to="/" aria-label="Pax Logistics home">
-          <span className="brand-logo"><img src="/assets/pax-logo.png" alt="PAX — Reaching Further" /></span>
+        <AppLink className="brand" to="/" aria-label="UK Courier home">
+          <span className="brand-logo"><img src="/assets/uk-courier-logo.png" alt="UK Courier — Global Shipping Solutions" /></span>
         </AppLink>
         <nav className="desktop-nav" aria-label="Primary navigation">
           {primaryNavItems.map(([path, label]) => (
@@ -128,7 +128,7 @@ function Footer() {
       <div className="shell footer-grid">
         <div>
           <AppLink className="brand footer-brand" to="/">
-            <span className="brand-logo"><img src="/assets/pax-logo.png" alt="PAX — Reaching Further" /></span>
+            <span className="brand-logo"><img src="/assets/uk-courier-logo.png" alt="UK Courier — Global Shipping Solutions" /></span>
           </AppLink>
           <p>Clear, practical shipping support from Hyderabad.</p>
         </div>
@@ -143,7 +143,7 @@ function Footer() {
         </address>
       </div>
       <div className="shell footer-bottom">
-        <span>© {new Date().getFullYear()} Pax Logistics</span>
+        <span>© {new Date().getFullYear()} UK Courier</span>
         <span>Hyderabad · Telangana · India</span>
       </div>
     </footer>
@@ -156,13 +156,13 @@ function SiteRoutes({ location }) {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "auto" });
     const titles = {
-      "/": "Pax Logistics — Courier & Shipping, Hyderabad",
-      "/services": "Services — Pax Logistics",
-      "/estimate": "Rate Calculator — Pax Logistics",
-      "/rate-calculator": "Rate Calculator — Pax Logistics",
-      "/weight-calculator": "Weight Calculator — Pax Logistics",
-      "/track": "Track a Shipment — Pax Logistics",
-      "/contact": "Contact — Pax Logistics",
+      "/": "UK Courier — Global Shipping Solutions",
+      "/services": "Services — UK Courier",
+      "/estimate": "Rate Calculator — UK Courier",
+      "/rate-calculator": "Rate Calculator — UK Courier",
+      "/weight-calculator": "Weight Calculator — UK Courier",
+      "/track": "Track a Shipment — UK Courier",
+      "/contact": "Contact — UK Courier",
     };
     document.title = titles[location.pathname] || titles["/"];
   }, [location.pathname]);
@@ -217,11 +217,11 @@ export default function App() {
   const pathname = window.location.pathname;
 
   if (pathname === "/sign-in") {
-    return <ExternalRedirect to={CLIENT_AUTH_URL} label="the Pax Logistics client login" />;
+    return <ExternalRedirect to={CLIENT_AUTH_URL} label="the UK Courier client login" />;
   }
 
   if (pathname === "/dashboard" || pathname === "/app" || pathname.startsWith("/app/")) {
-    return <ExternalRedirect to={CLIENT_APP_URL} label="the Pax Logistics client panel" />;
+    return <ExternalRedirect to={CLIENT_APP_URL} label="the UK Courier client panel" />;
   }
 
   if (pathname === "/admin" || pathname.startsWith("/admin/")) {

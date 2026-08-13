@@ -111,8 +111,18 @@ body {
 }
 
 .brand-logo {
-  width: 170px;
-  height: 56px;
+  width: 222px;
+  height: 62px;
+  overflow: visible;
+  border-radius: 0;
+  background: transparent;
+}
+
+.brand-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transform: translate(-50%, -50%);
 }
 
 .desktop-nav {
@@ -1446,8 +1456,8 @@ body {
 }
 
 .site-header--home .brand-logo {
-  width: 148px;
-  height: 52px;
+  width: 218px;
+  height: 60px;
 }
 
 .site-header--home .desktop-nav {
@@ -2114,8 +2124,8 @@ body {
 
 @media (max-width: 700px) {
   .site-header--home .brand-logo {
-    width: 138px;
-    height: 50px;
+    width: 176px;
+    height: 52px;
   }
 
   .reference-hero-grid {
@@ -2756,7 +2766,39 @@ body {
 }
 
 .site-footer .brand-logo {
-  box-shadow: 0 8px 24px rgba(44, 63, 96, 0.07);
+  width: 260px;
+  height: 92px;
+  box-shadow: none;
+}
+
+.site-header--home .desktop-nav a::after {
+  background: #d51224;
+}
+
+.home-quote-button,
+.reference-primary {
+  background: linear-gradient(135deg, #09285f, #001641);
+  box-shadow: 0 12px 28px rgba(0, 34, 88, 0.22);
+}
+
+.home-quote-button:hover,
+.reference-primary:hover {
+  background: linear-gradient(135deg, #d51224, #a80818);
+  box-shadow: 0 16px 34px rgba(213, 18, 36, 0.25);
+}
+
+.reference-kicker span,
+.reference-feature-icon {
+  background: #fff0f2;
+  color: #c90f21;
+}
+
+.reference-tile--core {
+  background: linear-gradient(145deg, #0b2f6c 15%, #001641 58%, #d51224 100%);
+}
+
+.reference-tile--core small {
+  color: #ffdce0;
 }
 
 .footer-grid > div:first-child > p {

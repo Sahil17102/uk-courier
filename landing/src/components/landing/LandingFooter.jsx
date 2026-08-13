@@ -25,13 +25,13 @@ export default function LandingFooter({ footerGroups, footerMeta }) {
               <div className="flex items-center gap-3">
                 <Box
                   component="img"
-                  src="/assets/pax-logo.png"
-                  alt="Pax Logistics"
+                  src="/assets/uk-courier-logo.png"
+                  alt="UK Courier"
                   sx={{ width: { xs: 148, sm: 176 }, height: "auto" }}
                 />
                 <div>
                   <Typography variant="h6" className="brand-heading text-xl">
-                    Pax Logistics
+                    UK Courier
                   </Typography>
                   <Typography className="text-sm" sx={{ color: "#6d6157" }}>
                     Har parcel tezi se manzil tak
@@ -43,7 +43,7 @@ export default function LandingFooter({ footerGroups, footerMeta }) {
                 className="mt-6 max-w-md text-sm leading-8 sm:text-base"
                 sx={{ color: "#625b63" }}
               >
-                Pax Logistics turns one public brand link into a polished entry point for merchants,
+                UK Courier turns one public brand link into a polished entry point for merchants,
                 clients, and admins. Share the landing page widely, then launch the right product
                 surface in a fresh tab when the user is ready.
               </Typography>
@@ -180,7 +180,7 @@ export default function LandingFooter({ footerGroups, footerMeta }) {
 
           <div className="flex flex-col gap-3 text-sm text-[#6b6068] sm:flex-row sm:items-center sm:justify-between">
             <Typography className="text-sm text-[#6b6068]">
-              Pax Logistics (c) {currentYear}. All rights reserved.
+              UK Courier © {currentYear}. All rights reserved.
             </Typography>
             <Typography className="text-sm text-[#6b6068]">
               Built for ecommerce teams who want faster shipping decisions and clearer delivery

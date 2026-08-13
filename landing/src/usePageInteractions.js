@@ -93,7 +93,7 @@ export function usePageInteractions(location, navigate) {
 
         document.querySelector("#rate-value").textContent = `₹${lower}–₹${upper}`;
         document.querySelector("#rate-route").textContent = `${pickup} → ${delivery} · ${weight} kg · ${speed === "express" ? "Express" : "Standard"}`;
-        const message = `Hello Pax Logistics,\nPlease confirm a rate for ${pickup} to ${delivery}, ${weight} kg, ${speed}. Website estimate: ₹${lower}–₹${upper}`;
+        const message = `Hello UK Courier,\nPlease confirm a rate for ${pickup} to ${delivery}, ${weight} kg, ${speed}. Website estimate: ₹${lower}–₹${upper}`;
         document.querySelector("#rate-whatsapp").href = `https://wa.me/919494338206?text=${encodeURIComponent(message)}`;
         rateResult.classList.add("is-visible");
       });
@@ -111,7 +111,7 @@ export function usePageInteractions(location, navigate) {
         const note = document.querySelector("#tracking-note");
         if (status) status.textContent = shipment.status;
         if (update) update.textContent = shipment.status;
-        if (note) note.textContent = shipment.destination ? `Latest destination: ${shipment.destination}` : "Latest status received from Pax operations.";
+        if (note) note.textContent = shipment.destination ? `Latest destination: ${shipment.destination}` : "Latest status received from UK Courier operations.";
         const stageByStatus = { "Pickup scheduled": 0, "In transit": 2, "Out for delivery": 2, Delivered: 3, Exception: 2, RTO: 2 };
         const activeStage = stageByStatus[shipment.status] ?? 0;
         document.querySelectorAll("#tracking-panel .tracking-steps li").forEach((step, index) => {
@@ -127,8 +127,8 @@ export function usePageInteractions(location, navigate) {
       listen(trackingForm, "submit", async (event) => {
         event.preventDefault();
         const reference = input.value.trim().toUpperCase();
-        if (!/^PAX[-\s]?[A-Z0-9]{6,20}$/.test(reference)) {
-          error.textContent = "Enter a valid Pax shipment reference.";
+        if (!/^UKC[-\s]?[A-Z0-9]{6,20}$/.test(reference)) {
+          error.textContent = "Enter a valid UK Courier shipment reference.";
           return;
         }
         error.textContent = "Checking live shipment status…";
@@ -178,7 +178,7 @@ export function usePageInteractions(location, navigate) {
         return;
       }
       error.textContent = "";
-      const message = `Hello Pax Logistics,\nName: ${name}\nPhone: ${phone}\nShipment details: ${details}`;
+      const message = `Hello UK Courier,\nName: ${name}\nPhone: ${phone}\nShipment details: ${details}`;
       window.open(`https://wa.me/919494338206?text=${encodeURIComponent(message)}`, "_blank", "noopener,noreferrer");
     });
 
