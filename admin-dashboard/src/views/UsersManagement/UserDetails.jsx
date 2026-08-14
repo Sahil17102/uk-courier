@@ -710,7 +710,7 @@ export default function UserDetails() {
       icon: <MdOutlineHomeWork />,
       path: `/admin/users-management/${id}/company-details`,
     },
-    { name: 'ORDERS', icon: <BsBox />, path: `/admin/users-management/${id}/orders` },
+    { name: 'ALL ORDERS', icon: <BsBox />, path: `/admin/users-management/${id}/orders` },
     {
       name: 'BANK ACCOUNTS',
       icon: <CiBank />,
@@ -745,7 +745,13 @@ export default function UserDetails() {
         backgroundHeader={companyLogoUrl || ProfileBgImage}
         backgroundProfile={bgProfile}
         avatarImage={avatarUrl}
-        name={companyInfo.contactPerson || ''}
+        name={
+          companyInfo.contactPerson ||
+          companyInfo.brandName ||
+          companyInfo.businessName ||
+          profileData?.data?.email ||
+          'Seller'
+        }
         email={profileData?.data?.email || ''}
         phone={profileData?.data?.phone || ''}
         tabs={tabRoutes}

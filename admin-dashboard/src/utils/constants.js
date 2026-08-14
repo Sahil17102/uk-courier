@@ -92,3 +92,23 @@ export const supportCategories = [
     ],
   },
 ]
+
+export const walletAdjustmentReasons = {
+  credit: [
+    'Admin wallet recharge',
+    'Payment gateway recharge correction',
+    'Shipment charge refund',
+    'COD remittance adjustment',
+    'Promotional credit',
+    'Invoice credit / waiver',
+  ],
+  debit: [
+    'Admin wallet debit',
+    'B2C shipment charge adjustment',
+    'B2B shipment charge adjustment',
+    'Weight discrepancy charge',
+    'RTO / reverse shipment charge',
+    'Invoice adjustment',
+    'Incorrect wallet credit reversal',
+  ],
+}
