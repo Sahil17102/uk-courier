@@ -54,7 +54,6 @@ const CompanyDetails = ({ companyInfo, companyLogoUrl }) => {
     )
   }
 
-  console.log(companyInfo)
   return (
     <Card
       bg={cardBg}
@@ -127,22 +126,25 @@ const CompanyDetails = ({ companyInfo, companyLogoUrl }) => {
             fontWeight="bold"
             color={titleColor}
           >
-            {companyInfo?.businessName || 'Company'}
+            {companyInfo?.brandName || companyInfo?.businessName || companyInfo?.companyName || 'Company'}
           </Text>
         </Flex>
       </CardHeader>
 
       <CardBody>
         <SimpleGrid columns={{ base: 1, md: 2 }} spacing={6}>
+          <InfoRow label="Business Name" value={companyInfo.businessName} />
+          <InfoRow label="Brand Name" value={companyInfo.brandName} />
           <InfoRow label="Contact Person" value={companyInfo.contactPerson} />
-          <InfoRow label="Email" value={companyInfo?.contactEmail} />
-          <InfoRow label="Phone" value={companyInfo?.contactNumber} />
+          <InfoRow label="POC Email" value={companyInfo.contactEmail} />
+          <InfoRow label="POC Phone" value={companyInfo.contactNumber} />
+          <InfoRow label="Company Email" value={companyInfo.companyEmail} />
+          <InfoRow label="Company Phone" value={companyInfo.companyContactNumber} />
           <InfoRow label="Address" value={companyInfo?.companyAddress} />
           <InfoRow label="City" value={companyInfo?.city} />
           <InfoRow label="State" value={companyInfo?.state} />
           <InfoRow label="Postal Code" value={companyInfo?.pincode} />
           <InfoRow label="Website" value={companyInfo?.website ?? 'N/A'} />
-          {/* Add more fields as necessary */}
         </SimpleGrid>
       </CardBody>
     </Card>

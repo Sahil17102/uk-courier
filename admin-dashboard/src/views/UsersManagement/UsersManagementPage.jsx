@@ -124,14 +124,26 @@ export default function UsersManagementPage() {
 
   const captions = [
     'User ID',
-    'Contact Person',
+    'Seller',
+    'Company',
     'Contact Number',
     'Email',
+    'Plan',
     'KYC Status',
     'Account Status',
     'Role',
   ]
-  const columnKeys = ['id', 'contactPerson', 'contactNumber', 'email', 'kycStatus', 'approved', 'role']
+  const columnKeys = [
+    'id',
+    'contactPerson',
+    'companyName',
+    'contactNumber',
+    'email',
+    'planName',
+    'kycStatus',
+    'approved',
+    'role',
+  ]
 
   const handleView = (id) => {
     history.push(`/admin/users-management/${id}/overview`)
@@ -229,15 +241,38 @@ export default function UsersManagementPage() {
           kycStatus: (value) => (
             <StatusBadge status={formatKycStatus(value)} type={getKycBadgeType(value)} />
           ),
+          companyName: (value, row) =>
+            value ||
+            row.companyInfo?.brandName ||
+            row.companyInfo?.businessName ||
+            row.companyInfo?.companyName ||
+            '—',
+          planName: (value) => value || 'No active plan',
           contactPerson: (value, row) => (
-            <Stack direction={'row'} alignItems={'center'} gap={1}>
+            <Stack
+              as="button"
+              type="button"
+              bg="transparent"
+              border="0"
+              p={0}
+              cursor="pointer"
+              direction="row"
+              alignItems="center"
+              gap={1}
+              color="blue.500"
+              textAlign="left"
+              onClick={() => handleView(row.id)}
+              _hover={{ color: 'blue.600', textDecoration: 'underline' }}
+            >
               <Avatar
-                name={value}
-                src={row?.profilePicture}
+                name={value || row.companyName || row.email}
+                src={row.profilePicture || row.companyInfo?.profilePicture}
                 _hover={{ zIndex: '3', cursor: 'pointer' }}
                 size="sm"
               />
-              <span style={{ fontWeight: '500' }}>{value || '—'}</span>
+              <span style={{ fontWeight: '500' }}>
+                {value || row.companyName || row.email || '—'}
+              </span>
             </Stack>
           ),
         }}

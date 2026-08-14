@@ -1,5 +1,7 @@
 import { and, desc, eq, gte, ilike, lte, or, sql } from 'drizzle-orm'
 import { db, pool } from '../client'
+import { plans } from '../schema/plans'
+import { userPlans } from '../schema/userPlans'
 import { wallets, walletTransactions } from '../schema/wallet'
 import { userProfiles } from '../schema/userProfile'
 import { users } from '../schema/users'
@@ -32,7 +34,11 @@ export const getAllWallets = async ({
         ilike(sql`coalesce(${userProfiles.companyInfo} ->> 'contactPerson', '')`, pattern),
         ilike(sql`coalesce(${userProfiles.companyInfo} ->> 'contactEmail', '')`, pattern),
         ilike(sql`coalesce(${userProfiles.companyInfo} ->> 'businessName', '')`, pattern),
+        ilike(sql`coalesce(${userProfiles.companyInfo} ->> 'companyName', '')`, pattern),
+        ilike(sql`coalesce(${userProfiles.companyInfo} ->> 'companyEmail', '')`, pattern),
+        ilike(sql`coalesce(${userProfiles.companyInfo} ->> 'companyContactNumber', '')`, pattern),
         ilike(users.email, pattern),
+        ilike(sql`coalesce(${users.phone}, '')`, pattern),
       ),
     )
   }
@@ -43,17 +49,19 @@ export const getAllWallets = async ({
     createdAt: wallets.createdAt,
     updatedAt: wallets.updatedAt,
     email: users.email,
-    companyName: sql`${userProfiles.companyInfo} ->> 'brandName'`,
+    companyName: sql`coalesce(${userProfiles.companyInfo} ->> 'brandName', ${userProfiles.companyInfo} ->> 'businessName', ${userProfiles.companyInfo} ->> 'companyName', '')`,
   }
   const sortColumn = sortColumns[sortBy] ?? wallets.updatedAt
   const orderBy = sortOrder === 'asc' ? sortColumn : desc(sortColumn)
 
   // Get total count
   const totalCountResult = await db
-    .select({ count: sql<number>`count(*)` })
+    .select({ count: sql<number>`count(distinct ${wallets.id})` })
     .from(wallets)
     .innerJoin(users, eq(wallets.userId, users.id))
-    .innerJoin(userProfiles, eq(users.id, userProfiles.userId))
+    .leftJoin(userProfiles, eq(users.id, userProfiles.userId))
+    .leftJoin(userPlans, and(eq(users.id, userPlans.userId), eq(userPlans.is_active, true)))
+    .leftJoin(plans, eq(userPlans.plan_id, plans.id))
     .where(filters.length > 0 ? and(...filters) : undefined)
 
   const totalCount = Number(totalCountResult[0]?.count || 0)
@@ -68,12 +76,17 @@ export const getAllWallets = async ({
       createdAt: wallets.createdAt,
       updatedAt: wallets.updatedAt,
       userEmail: users.email,
+      userPhone: users.phone,
+      profilePicture: users.profilePicture,
       userRole: users.role,
       companyInfo: userProfiles.companyInfo,
+      planName: plans.name,
     })
     .from(wallets)
     .innerJoin(users, eq(wallets.userId, users.id))
-    .innerJoin(userProfiles, eq(users.id, userProfiles.userId))
+    .leftJoin(userProfiles, eq(users.id, userProfiles.userId))
+    .leftJoin(userPlans, and(eq(users.id, userPlans.userId), eq(userPlans.is_active, true)))
+    .leftJoin(plans, eq(userPlans.plan_id, plans.id))
     .where(filters.length > 0 ? and(...filters) : undefined)
     .orderBy(orderBy)
     .limit(limit)
@@ -97,12 +110,17 @@ export const getWalletByUserId = async (userId: string) => {
       createdAt: wallets.createdAt,
       updatedAt: wallets.updatedAt,
       userEmail: users.email,
+      userPhone: users.phone,
+      profilePicture: users.profilePicture,
       userRole: users.role,
       companyInfo: userProfiles.companyInfo,
+      planName: plans.name,
     })
     .from(wallets)
     .innerJoin(users, eq(wallets.userId, users.id))
-    .innerJoin(userProfiles, eq(users.id, userProfiles.userId))
+    .leftJoin(userProfiles, eq(users.id, userProfiles.userId))
+    .leftJoin(userPlans, and(eq(users.id, userPlans.userId), eq(userPlans.is_active, true)))
+    .leftJoin(plans, eq(userPlans.plan_id, plans.id))
     .where(eq(wallets.userId, userId))
     .limit(1)
 
@@ -118,6 +136,7 @@ export const getWalletTransactionsByUserId = async ({
   page = 1,
   limit = 50,
   type,
+  reason,
   dateFrom,
   dateTo,
 }: {
@@ -125,6 +144,7 @@ export const getWalletTransactionsByUserId = async ({
   page?: number
   limit?: number
   type?: 'credit' | 'debit'
+  reason?: string
   dateFrom?: Date
   dateTo?: Date
 }) => {
@@ -139,6 +159,7 @@ export const getWalletTransactionsByUserId = async ({
   // Build filters
   const conditions: any[] = [eq(walletTransactions.wallet_id, userWallet[0].id)]
   if (type) conditions.push(eq(walletTransactions.type, type))
+  if (reason?.trim()) conditions.push(ilike(walletTransactions.reason, `%${reason.trim()}%`))
   if (dateFrom) conditions.push(gte(walletTransactions.created_at, dateFrom))
   if (dateTo) conditions.push(lte(walletTransactions.created_at, dateTo))
 

@@ -790,6 +790,8 @@ export async function getAllUsersWithRoleUser({
         ilike(sql`coalesce(${schema.userProfiles.companyInfo} ->> 'contactEmail', '')`, pattern),
         ilike(sql`coalesce(${schema.userProfiles.companyInfo} ->> 'contactNumber', '')`, pattern),
         ilike(sql`coalesce(${schema.userProfiles.companyInfo} ->> 'businessName', '')`, pattern),
+        ilike(sql`coalesce(${users.email}, '')`, pattern),
+        ilike(sql`coalesce(${users.phone}, '')`, pattern),
       ),
     )
   }
@@ -843,14 +845,18 @@ export async function getAllUsersWithRoleUser({
       email: users.email,
       role: users.role,
       createdAt: users.createdAt,
+      updatedAt: users.updatedAt,
       companyName: sql<string>`coalesce(${schema.userProfiles.companyInfo} ->> 'businessName', ${schema.userProfiles.companyInfo} ->> 'brandName', '')`,
+      companyInfo: schema.userProfiles.companyInfo,
       businessType: schema.userProfiles.businessType,
       approved: schema.userProfiles.approved,
       onboardingComplete: schema.userProfiles.onboardingComplete,
       onboardingStep: schema.userProfiles.onboardingStep,
+      profileComplete: schema.userProfiles.profileComplete,
       contactPerson: sql<string>`${schema.userProfiles.companyInfo} ->> 'contactPerson'`,
-      contactNumber: sql<string>`${schema.userProfiles.companyInfo} ->> 'contactNumber'`,
-      profilePicture: sql<string>`${schema.userProfiles.companyInfo} ->> 'profilePicture'`,
+      contactNumber: sql<string>`coalesce(${schema.userProfiles.companyInfo} ->> 'contactNumber', ${users.phone}, '')`,
+      profilePicture: sql<string>`coalesce(${users.profilePicture}, ${schema.userProfiles.companyInfo} ->> 'profilePicture')`,
+      planName: schema.plans.name,
       domesticKyc: schema.userProfiles.domesticKyc,
       kycStatus: kycStatusExpr,
       kycUpdatedAt: schema.kyc.updatedAt,
@@ -872,6 +878,11 @@ export async function getAllUsersWithRoleUser({
     .from(users)
     .leftJoin(schema.userProfiles, eq(schema.userProfiles.userId, users.id))
     .leftJoin(schema.kyc, eq(schema.kyc.userId, users.id))
+    .leftJoin(
+      schema.userPlans,
+      and(eq(schema.userPlans.userId, users.id), eq(schema.userPlans.is_active, true)),
+    )
+    .leftJoin(schema.plans, eq(schema.plans.id, schema.userPlans.plan_id))
     .where(and(...filters))
     .orderBy(sortOrder === 'asc' ? asc(sortColumn) : desc(sortColumn))
     .limit(perPage)
@@ -879,10 +890,15 @@ export async function getAllUsersWithRoleUser({
 
   // Count total
   const totalCountResult = await db
-    .select({ count: sql<number>`count(*)` })
+    .select({ count: sql<number>`count(distinct ${users.id})` })
     .from(users)
     .leftJoin(schema.userProfiles, eq(schema.userProfiles.userId, users.id))
     .leftJoin(schema.kyc, eq(schema.kyc.userId, users.id))
+    .leftJoin(
+      schema.userPlans,
+      and(eq(schema.userPlans.userId, users.id), eq(schema.userPlans.is_active, true)),
+    )
+    .leftJoin(schema.plans, eq(schema.plans.id, schema.userPlans.plan_id))
     .where(and(...filters))
 
   return {

@@ -29,6 +29,7 @@ import { IconAdjustments, IconEye, IconMinus, IconPlus, IconWallet } from '@tabl
 import StatusBadge from 'components/Badge/StatusBadge'
 import CustomDatePicker from 'components/Input/CustomDatePicker'
 import CustomModal from 'components/Modal/CustomModal'
+import ReasonSelect from 'components/ReasonSelect'
 import SortControls from 'components/SortControls'
 import OrderDetailsModal from 'components/Tables/OrderDetailsModal'
 import TableFilters from 'components/Tables/TableFilters'
@@ -39,6 +40,7 @@ import {
 } from 'hooks/useWallet'
 import { useState } from 'react'
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
+import { walletAdjustmentReasons } from 'utils/constants'
 import { GenericTable } from 'views/Dashboard/Tables/components/GenericTable'
 
 const walletFilterOptions = [
@@ -51,6 +53,13 @@ const walletFilterOptions = [
 ]
 
 const WALLET_TRANSACTION_GST_PERCENT = 18
+
+const createEmptyAdjustment = (type = 'credit') => ({
+  type,
+  amount: '',
+  reason: walletAdjustmentReasons[type][0],
+  notes: '',
+})
 
 export default function AdminWallets() {
   const history = useHistory()
@@ -85,18 +94,14 @@ export default function AdminWallets() {
   const [transactionsPage, setTransactionsPage] = useState(1)
   const [transactionsLimit] = useState(50)
   const [transactionType, setTransactionType] = useState('')
+  const [transactionReason, setTransactionReason] = useState('')
   const [transactionDateFrom, setTransactionDateFrom] = useState(null)
   const [transactionDateTo, setTransactionDateTo] = useState(null)
   const [selectedTransaction, setSelectedTransaction] = useState(null)
   const [selectedTransactionOrder, setSelectedTransactionOrder] = useState(null)
 
   // Adjust wallet form
-  const [adjustForm, setAdjustForm] = useState({
-    type: 'credit',
-    amount: '',
-    reason: '',
-    notes: '',
-  })
+  const [adjustForm, setAdjustForm] = useState(createEmptyAdjustment())
 
   const { data: walletsData, isLoading } = useAdminWallets({
     page,
@@ -112,6 +117,7 @@ export default function AdminWallets() {
       page: transactionsPage,
       limit: transactionsLimit,
       type: transactionType || undefined,
+      reason: transactionReason || undefined,
       dateFrom: transactionDateFrom,
       dateTo: transactionDateTo,
     },
@@ -138,6 +144,7 @@ export default function AdminWallets() {
     setSelectedWallet(wallet)
     setTransactionsPage(1)
     setTransactionType('')
+    setTransactionReason('')
     setTransactionDateFrom(null)
     setTransactionDateTo(null)
     onTransactionsOpen()
@@ -173,15 +180,15 @@ export default function AdminWallets() {
     setSelectedTransactionOrder(null)
   }
 
-  const handleAdjustWallet = (wallet) => {
+  const handleAdjustWallet = (wallet, type = 'credit') => {
     setSelectedUserId(wallet.userId)
     setSelectedWallet(wallet)
-    setAdjustForm({ type: 'credit', amount: '', reason: '', notes: '' })
+    setAdjustForm(createEmptyAdjustment(type))
     onAdjustOpen()
   }
 
   const handleAdjustSubmit = async () => {
-    if (!adjustForm.amount || !adjustForm.reason) {
+    if (!adjustForm.amount || !adjustForm.reason.trim()) {
       toast({
         status: 'error',
         title: 'Validation Error',
@@ -209,8 +216,8 @@ export default function AdminWallets() {
         userId: selectedUserId,
         type: adjustForm.type,
         amount: amountNum,
-        reason: adjustForm.reason,
-        notes: adjustForm.notes,
+        reason: adjustForm.reason.trim(),
+        notes: adjustForm.notes.trim(),
       })
       toast({
         status: 'success',
@@ -220,7 +227,7 @@ export default function AdminWallets() {
         isClosable: true,
       })
       onAdjustClose()
-      setAdjustForm({ type: 'credit', amount: '', reason: '', notes: '' })
+      setAdjustForm(createEmptyAdjustment())
     } catch (error) {
       toast({
         status: 'error',
@@ -236,8 +243,26 @@ export default function AdminWallets() {
     history.push(`/admin/users-management/${userId}/overview`)
   }
 
-  const captions = ['User', 'Email', 'Balance', 'Currency', 'Last Updated', 'Actions']
-  const columnKeys = ['user', 'userEmail', 'balance', 'currency', 'updatedAt', 'actions']
+  const captions = [
+    'Seller',
+    'Email',
+    'Phone',
+    'Plan',
+    'Balance',
+    'Currency',
+    'Last Updated',
+    'Actions',
+  ]
+  const columnKeys = [
+    'user',
+    'userEmail',
+    'userPhone',
+    'planName',
+    'balance',
+    'currency',
+    'updatedAt',
+    'actions',
+  ]
 
   const formatBalance = (balance) => {
     const num = parseFloat(balance || 0)
@@ -259,14 +284,20 @@ export default function AdminWallets() {
     })
   }
 
-  const getCompanyName = (companyInfo) => {
-    if (!companyInfo) return '—'
-    return companyInfo.brandName || companyInfo.businessName || companyInfo.name || '—'
+  const getCompanyName = (companyInfo, row = {}) => {
+    return (
+      companyInfo?.brandName ||
+      companyInfo?.businessName ||
+      companyInfo?.companyName ||
+      companyInfo?.displayName ||
+      companyInfo?.name ||
+      row.userEmail ||
+      'Seller'
+    )
   }
 
-  const getContactPerson = (companyInfo) => {
-    if (!companyInfo) return '—'
-    return companyInfo.contactPerson || '—'
+  const getContactPerson = (companyInfo, row = {}) => {
+    return companyInfo?.contactPerson || row.contactPerson || '—'
   }
 
   const getTransactionMeta = (txn) =>
@@ -505,14 +536,24 @@ export default function AdminWallets() {
                 Transactions
               </Button>
             </Tooltip>
-            <Tooltip label="Adjust Balance">
+            <Tooltip label="Recharge or credit wallet">
               <Button
                 size="sm"
-                colorScheme="purple"
-                leftIcon={<IconAdjustments size={16} />}
-                onClick={() => handleAdjustWallet(row)}
+                colorScheme="green"
+                leftIcon={<IconPlus size={16} />}
+                onClick={() => handleAdjustWallet(row, 'credit')}
               >
-                Adjust
+                Credit / Recharge
+              </Button>
+            </Tooltip>
+            <Tooltip label="Debit wallet">
+              <Button
+                size="sm"
+                colorScheme="red"
+                leftIcon={<IconMinus size={16} />}
+                onClick={() => handleAdjustWallet(row, 'debit')}
+              >
+                Debit
               </Button>
             </Tooltip>
             <Button size="sm" colorScheme="teal" onClick={() => handleViewUser(row.userId)}>
@@ -522,11 +563,25 @@ export default function AdminWallets() {
         )}
         renderers={{
           user: (value, row) => {
-            const companyName = getCompanyName(row?.companyInfo)
-            const contactPerson = getContactPerson(row?.companyInfo)
+            const companyName = getCompanyName(row.companyInfo, row)
+            const contactPerson = getContactPerson(row.companyInfo, row)
             return (
-              <Stack direction="row" alignItems="center" gap={2}>
+              <Stack
+                as="button"
+                type="button"
+                bg="transparent"
+                border="0"
+                p={0}
+                cursor="pointer"
+                direction="row"
+                alignItems="center"
+                gap={2}
+                textAlign="left"
+                onClick={() => handleViewUser(row.userId)}
+                _hover={{ color: 'blue.600' }}
+              >
                 <Avatar
+                  src={row.profilePicture || row.companyInfo?.profilePicture}
                   name={contactPerson !== '—' ? contactPerson : companyName}
                   size="sm"
                   _hover={{ zIndex: '3', cursor: 'pointer' }}
@@ -545,6 +600,15 @@ export default function AdminWallets() {
             )
           },
           userEmail: (value) => <Text>{value || '—'}</Text>,
+          userPhone: (value, row) => (
+            <Text>
+              {value ||
+                row.companyInfo?.contactNumber ||
+                row.companyInfo?.companyContactNumber ||
+                '—'}
+            </Text>
+          ),
+          planName: (value) => <Text>{value || 'No active plan'}</Text>,
           balance: (value) => {
             const num = parseFloat(value || 0)
             return (
@@ -571,7 +635,7 @@ export default function AdminWallets() {
             </HStack>
             {selectedWallet && (
               <Text fontSize="sm" color="gray.500" fontWeight="normal">
-                {getCompanyName(selectedWallet.companyInfo)} - Balance:{' '}
+                {getCompanyName(selectedWallet.companyInfo, selectedWallet)} - Balance:{' '}
                 {formatBalance(selectedWallet.balance)}
               </Text>
             )}
@@ -595,6 +659,17 @@ export default function AdminWallets() {
                 <option value="credit">Credit</option>
                 <option value="debit">Debit</option>
               </Select>
+            </FormControl>
+            <FormControl flex="1" minW="220px">
+              <FormLabel fontSize="sm">Reason contains</FormLabel>
+              <Input
+                value={transactionReason}
+                onChange={(event) => {
+                  setTransactionReason(event.target.value)
+                  setTransactionsPage(1)
+                }}
+                placeholder="Recharge, refund, shipment..."
+              />
             </FormControl>
             <FormControl flex="1" minW="200px">
               <FormLabel fontSize="sm">Date From</FormLabel>
@@ -902,7 +977,7 @@ export default function AdminWallets() {
             </HStack>
             {selectedWallet && (
               <Text fontSize="sm" color="gray.500" fontWeight="normal">
-                {getCompanyName(selectedWallet.companyInfo)} - Current Balance:{' '}
+                {getCompanyName(selectedWallet.companyInfo, selectedWallet)} - Current Balance:{' '}
                 {formatBalance(selectedWallet.balance)}
               </Text>
             )}
@@ -910,13 +985,13 @@ export default function AdminWallets() {
         }
         footer={
           <HStack>
-            <Button variant="ghost" onClick={onAdjustClose} isDisabled={adjustMutation.isLoading}>
+            <Button variant="ghost" onClick={onAdjustClose} isDisabled={adjustMutation.isPending}>
               Cancel
             </Button>
             <Button
               colorScheme={adjustForm.type === 'credit' ? 'green' : 'red'}
               onClick={handleAdjustSubmit}
-              isLoading={adjustMutation.isLoading}
+              isLoading={adjustMutation.isPending}
               loadingText={adjustForm.type === 'credit' ? 'Crediting...' : 'Debiting...'}
               leftIcon={
                 adjustForm.type === 'credit' ? <IconPlus size={16} /> : <IconMinus size={16} />
@@ -927,7 +1002,7 @@ export default function AdminWallets() {
           </HStack>
         }
       >
-        {adjustMutation.isLoading ? (
+        {adjustMutation.isPending ? (
           <VStack spacing={4} align="stretch" py={4}>
             <Skeleton height="40px" />
             <Skeleton height="40px" />
@@ -940,8 +1015,8 @@ export default function AdminWallets() {
               <FormLabel>Type</FormLabel>
               <Select
                 value={adjustForm.type}
-                onChange={(e) => setAdjustForm({ ...adjustForm, type: e.target.value })}
-                isDisabled={adjustMutation.isLoading}
+                onChange={(e) => setAdjustForm(createEmptyAdjustment(e.target.value))}
+                isDisabled={adjustMutation.isPending}
               >
                 <option value="credit">Credit (Add Money)</option>
                 <option value="debit">Debit (Deduct Money)</option>
@@ -957,17 +1032,18 @@ export default function AdminWallets() {
                 value={adjustForm.amount}
                 onChange={(e) => setAdjustForm({ ...adjustForm, amount: e.target.value })}
                 placeholder="Enter amount"
-                isDisabled={adjustMutation.isLoading}
+                isDisabled={adjustMutation.isPending}
               />
             </FormControl>
 
             <FormControl isRequired>
               <FormLabel>Reason</FormLabel>
-              <Input
+              <ReasonSelect
+                options={walletAdjustmentReasons[adjustForm.type]}
                 value={adjustForm.reason}
-                onChange={(e) => setAdjustForm({ ...adjustForm, reason: e.target.value })}
-                placeholder="e.g., Manual adjustment, Refund, etc."
-                isDisabled={adjustMutation.isLoading}
+                onChange={(reason) => setAdjustForm({ ...adjustForm, reason })}
+                customPlaceholder="Enter the wallet adjustment reason"
+                isDisabled={adjustMutation.isPending}
               />
             </FormControl>
 
@@ -978,7 +1054,7 @@ export default function AdminWallets() {
                 onChange={(e) => setAdjustForm({ ...adjustForm, notes: e.target.value })}
                 placeholder="Additional notes..."
                 rows={3}
-                isDisabled={adjustMutation.isLoading}
+                isDisabled={adjustMutation.isPending}
               />
             </FormControl>
 
